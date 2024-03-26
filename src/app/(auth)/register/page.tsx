@@ -15,12 +15,16 @@ const formSchema = z
     confirm: z.string().min(6, {
       message: "Password is required.",
     }),
-    telephone:z.string().min(9,{
-      message: 'Wrong format number'
-    }).regex(/^([+]?[\s0-9]+)?(\d{3}|[(]?[0-9]+[)])?([-]?[\s]?[0-9])+$/),
-    rule:z.boolean().nullable()
-   })
-  
+    telephone: z
+      .string()
+      .max(9)
+      .min(9, {
+        message: "Wrong format number",
+      })
+      .regex(/^([+]?[\s0-9]+)?(\d{3}|[(]?[0-9]+[)])?([-]?[\s]?[0-9])+$/),
+    rule: z.preprocess((value) => value === "on", z.boolean()),
+  })
+
   .refine((data) => data.confirm === data.password, {
     message: "Password did not match",
   });
@@ -33,12 +37,12 @@ export default function RegisterForm() {
       email: "",
       password: "",
       confirm: "",
-      telephone:'',
-      rule:false
+      telephone: "",
+      rule: false,
     },
   });
 
-   function onSubmit(data: z.infer<typeof formSchema>) {
+  function onSubmit(data: z.infer<typeof formSchema>) {
     // const result = await signUpWithEmailAndPassword(data);
 
     // const { error } = JSON.parse(result);
@@ -48,7 +52,7 @@ export default function RegisterForm() {
     //   console.log("success");
     // }
     console.log(data);
-    console.log('fire')
+    console.log("fire");
   }
   return (
     <div className="flex flex-col items-center justify-center mt-16 ">
@@ -84,18 +88,19 @@ export default function RegisterForm() {
               type="text"
               placeholder="ტელეფონის ნომერი"
             />
+
             <div className="w-[70%] flex items-center gap-3">
-              <Checkbox {...form.register('rule')} className="w-5 h-5" />
+              <Checkbox {...form.register("rule")} className="w-5 h-5" />
               <span>ვეთანხმები წესებსა და პირობებს</span>
             </div>
           </div>
-        <button
-        onClick={()=>console.log('ahahahah')}
-          className="mt-4 w-[70%] text-white bg-[#3C74FF] rounded-full py-3"
-          type="submit"
-        >
-          დადასტურება
-        </button>
+          <button
+            onClick={() => console.log("ahahahah")}
+            className="mt-4 w-[70%] text-white bg-[#3C74FF] rounded-full py-3"
+            type="submit"
+          >
+            დადასტურება
+          </button>
         </div>
       </form>
     </div>
