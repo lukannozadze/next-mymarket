@@ -6,7 +6,7 @@ import LoginForm from "./LoginForm";
 export default async function page() {
    const {data} = await readUserSession();
    if(data.session){
-    redirect('/');
+    return redirect('/');
    }
   return (
     <>
