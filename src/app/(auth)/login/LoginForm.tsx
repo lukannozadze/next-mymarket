@@ -6,6 +6,10 @@ import Image from "next/image";
 import { Input } from "@/components/ui/input";
 import Link from "next/link";
 import { signInWithEmailAndPassword } from "../actions";
+import { ToastAction } from "@/components/ui/toast";
+import { useToast } from "@/components/ui/use-toast";
+import { useEffect } from "react";
+import { error } from "console";
 
 
 
@@ -18,7 +22,7 @@ const formSchema = z
   })
 
 export default function LoginForm() {
-    
+  const { toast } = useToast()
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
 
@@ -27,13 +31,18 @@ export default function LoginForm() {
       password: "",
     },
   });
-
+ 
   async function onSubmit(data: z.infer<typeof formSchema>) {
     const result = await signInWithEmailAndPassword(data);
 
     const { error } = JSON.parse(result);
-    if (error) {
-      console.log("error",error);
+    if (error?.message) {
+        console.log(error.message)
+        toast({
+            variant: "destructive",
+            title: 'Error',
+            description: error.message,
+          })
     } else {
        console.log('success');
     }
