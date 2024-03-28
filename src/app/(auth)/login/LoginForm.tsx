@@ -7,6 +7,8 @@ import { Input } from "@/components/ui/input";
 import Link from "next/link";
 import { signInWithEmailAndPassword } from "../actions";
 
+
+
 const formSchema = z
   .object({
     email: z.string().email({message:'Enter the Email'}).min(1),
@@ -16,6 +18,7 @@ const formSchema = z
   })
 
 export default function LoginForm() {
+    
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
 
@@ -32,7 +35,7 @@ export default function LoginForm() {
     if (error) {
       console.log("error",error);
     } else {
-      console.log("success");
+       console.log('success');
     }
 
     console.log(data);

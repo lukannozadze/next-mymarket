@@ -6,7 +6,9 @@ import { signUpWithEmailAndPassword } from "../actions";
 import Image from "next/image";
 import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
+import { redirect, useRouter } from "next/navigation";
 import Link from "next/link";
+
 const formSchema = z
   .object({
     email: z.string().email({message:'Enter the Email'}).min(1),
@@ -39,6 +41,8 @@ const formSchema = z
   });
 
 export default  function RegisterForm() {
+ 
+    const router = useRouter();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
 
@@ -52,6 +56,9 @@ export default  function RegisterForm() {
     },
   });
  
+//   if(){
+//     router.push('/')
+//   }
  
   async function onSubmit(data: z.infer<typeof formSchema>) {
      const result = await signUpWithEmailAndPassword(data);
@@ -60,8 +67,9 @@ export default  function RegisterForm() {
     if (error) {
       console.log("error",error);
     } else {
-      console.log("success",error);
+        router.push('/')
     }
+
 
     console.log(data);
     
