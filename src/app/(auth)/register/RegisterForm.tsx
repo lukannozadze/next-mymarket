@@ -67,7 +67,10 @@ export default  function RegisterForm() {
     if (error) {
       console.log("error",error);
     } else {
-        router.push('/')
+        //router.push('/')
+        setTimeout(()=>{
+          router.push('/login')
+        },1000)
     }
 
 
