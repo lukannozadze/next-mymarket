@@ -1,12 +1,12 @@
 import Image from "next/image";
 
 import AddButton from "@/components/ui/AddButton";
-import SignInButton from "../SignInButton";
+import SignInButton from "../ui/SignInButton";
 import SearchForm from "./SearchForm";
 export default function Header() {
   return (
-    <header className="sticky top-0 px-4 py-4 border-b border-b-gray-100 ">
-      <div className="flex justify-between px-[5%] ">
+    <header className="sticky top-0 py-4 ">
+      <div className="mx-auto flex justify-between items-center max-w-[1440px]">
         <div className="flex gap-5 max-w-96">
           <Image src="/logo.svg" alt="logo" width={150} height={41} />
           <SearchForm />
@@ -38,5 +38,6 @@ export default function Header() {
         </div>
       </div>
     </header>
+     
   );
 }
