@@ -2,7 +2,7 @@ import Link from "next/link";
 export default function AgreementsSection() {
   return (
     <section className="flex justify-between items-center w-full pb-5 ">
-      <div className="flex gap-5">
+      <div className="flex flex-col md:flex-row gap-5">
         <span className="text-xs text-gray-400 underline hover:text-black cursor-pointer">
           Terms and Conditions
         </span>

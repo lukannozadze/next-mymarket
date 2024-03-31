@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import Wrapper from "../ui/wrapper";
+import SocialMedia from "./ui/SocialMedia";
 const navigationArr = [
   "List an item",
   "Buy Online",
@@ -39,7 +40,7 @@ const categoriesArrThird = [
 ];
 export default function Navigation() {
   return (
-    <div className="flex w-full py-[3.5rem]">
+    <div className="w-full py-[3.5rem] hidden md:flex">
       <div className="flex flex-col w-3/12">
         <h3 className="mb-6 text-base font-bold">Navigation</h3>
         {navigationArr.map((item) => {
@@ -67,32 +68,7 @@ export default function Navigation() {
             </Link>
           );
         })}
-        <div className="flex gap-3">
-          <div className="w-10 h-10 rounded-full bg-[#E5E5E5] flex items-center justify-center hover:bg-gray-300 cursor-pointer ">
-            <Image
-              src="/icons/facebook.svg"
-              alt="facebook"
-              width={10}
-              height={10}
-            />
-          </div>
-          <div className="w-10 h-10 rounded-full bg-[#E5E5E5] flex items-center justify-center hover:bg-gray-300 cursor-pointer">
-            <Image
-              src="/icons/instagram.svg"
-              alt="instagram"
-              width={20}
-              height={20}
-            />
-          </div>
-          <div className="w-10 h-10 rounded-full bg-[#E5E5E5] flex items-center justify-center hover:bg-gray-300 cursor-pointer ">
-            <Image
-              src="/icons/linkedin.svg"
-              alt="linkedin"
-              width={20}
-              height={20}
-            />
-          </div>
-        </div>
+        <SocialMedia/>
       </div>
       <div className="flex w-6/12 justify-between">
         <div className="flex flex-col">

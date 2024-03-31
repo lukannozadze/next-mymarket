@@ -12,20 +12,18 @@ export default async function Home() {
     redirect("/login");
   }
   return (
-    <div className="overflow-x-hidden">
       <div className="flex flex-col  justify-between relative">
         <HamburgerMenu />
         <Header />
         <div className="hidden md:block">
           <Wrapper />
         </div>
-        <main className="min-h-screen">
+        <main className="min-h-screen px-6">
           <form action={signOut}>
             <button>Log Out</button>
           </form>
         </main>
         <Footer />
       </div>
-    </div>
   );
 }

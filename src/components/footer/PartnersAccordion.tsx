@@ -1,7 +1,11 @@
-import Link from "next/link";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 import Image from "next/image";
-
-
+import Link from "next/link";
 const partners = [
   {
     id: 1,
@@ -54,25 +58,23 @@ const partners = [
   { id: 9, src: "/logos/tkt.svg", alt: "tkt", path: "https://tkt.ge/" },
   { id: 10, src: "/logos/livo.svg", alt: "livo", path: "https://livo.ge/" },
 ];
-export default function PartnersSection() {
+export function PartnersAccordion() {
   return (
-    <div className="w-full  border border-gray-200 pr-4 rounded-full items-center justify-between hidden md:flex">
-      <Link href="https://www.tnet.ge/">
-        <Image
-          src="/logos/tnet-footer.png"
-          alt="tnet"
-          width={130}
-          height={32}
-        />
-      </Link>
-      {partners.map((partner) => {
+    <Accordion type="single" collapsible className="w-full bg-[#F4F4F5] p-6 rounded-3xl md:hidden">
+      <AccordionItem value="item-1" className="border-none">
+        <AccordionTrigger>
+          <Image src="/tnet-en.svg" alt="tnet" width={80} height={22}/>
+        </AccordionTrigger>
+        <AccordionContent className="grid grid-cols-3 gap-10">
+        {partners.map((partner) => {
         return (
           <Link key={partner.id} href={partner.path}>
             <Image src={partner.src} alt={partner.alt} width={66} height={20} />
           </Link>
         );
       })}
-
-      </div>
+        </AccordionContent>
+      </AccordionItem>
+    </Accordion>
   );
 }
