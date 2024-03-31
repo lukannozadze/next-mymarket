@@ -11,18 +11,15 @@ import { useToast } from "@/components/ui/use-toast";
 import { useEffect } from "react";
 import { error } from "console";
 
-
-
-const formSchema = z
-  .object({
-    email: z.string().email({message:'Enter the Email'}).min(1),
-    password: z.string().min(6, {
-      message: " must contain at least 6 character(s).",
-    })          
-  })
+const formSchema = z.object({
+  email: z.string().email({ message: "Enter the Email" }).min(1),
+  password: z.string().min(6, {
+    message: " must contain at least 6 character(s).",
+  }),
+});
 
 export default function LoginForm() {
-  const { toast } = useToast()
+  const { toast } = useToast();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
 
@@ -31,24 +28,23 @@ export default function LoginForm() {
       password: "",
     },
   });
- 
+
   async function onSubmit(data: z.infer<typeof formSchema>) {
     const result = await signInWithEmailAndPassword(data);
 
     const { error } = JSON.parse(result);
     if (error?.message) {
-        console.log(error.message)
-        toast({
-            variant: "destructive",
-            title: 'Error',
-            description: error.message,
-          })
+      console.log(error.message);
+      toast({
+        variant: "destructive",
+        title: "Error",
+        description: error.message,
+      });
     } else {
-       console.log('success');
+      console.log("success");
     }
 
     console.log(data);
-    
   }
   return (
     <div className="flex flex-col items-center justify-center mt-16 ">
@@ -60,27 +56,47 @@ export default function LoginForm() {
         <div className="w-[90%] flex flex-col items-center gap-4">
           <h2 className="w-[60%] text-3xl font-bold">Authorization</h2>
           <div className="w-[100%] flex flex-col items-center gap-3">
-            <div className="w-[60%] flex flex-col  "> 
+            <div className="w-[60%] flex flex-col  ">
               <Input
-              className="w-[100%] p-4 rounded-lg"
-              {...form.register("email")}
-              type="text"
-              placeholder="Email"
+                className="w-[100%] p-4 rounded-lg"
+                {...form.register("email")}
+                type="text"
+                placeholder="Email"
               />
-              {form.formState.errors.email && <div className="flex gap-3 items-center ">
-                <Image src='/icons/error.png' alt="error" width={25} height={25}/>
-                <span className=" text-[#FF0000]">{form.formState.errors.email.message}</span></div>}
+              {form.formState.errors.email && (
+                <div className="flex gap-3 items-center ">
+                  <Image
+                    src="/icons/error.png"
+                    alt="error"
+                    width={25}
+                    height={25}
+                  />
+                  <span className=" text-[#FF0000]">
+                    {form.formState.errors.email.message}
+                  </span>
+                </div>
+              )}
             </div>
-            <div className="w-[60%] flex flex-col  "> 
+            <div className="w-[60%] flex flex-col  ">
               <Input
-              className="w-[100%] p-4 rounded-lg"
-              {...form.register("password")}
-              type="password"
-              placeholder="Password"
+                className="w-[100%] p-4 rounded-lg"
+                {...form.register("password")}
+                type="password"
+                placeholder="Password"
               />
-              {form.formState.errors.password && <div className="flex gap-3 items-center ">
-                <Image src='/icons/error.png' alt="error" width={25} height={25}/>
-                <span className=" text-[#FF0000]">{form.formState.errors.password.message}</span></div>}
+              {form.formState.errors.password && (
+                <div className="flex gap-3 items-center ">
+                  <Image
+                    src="/icons/error.png"
+                    alt="error"
+                    width={25}
+                    height={25}
+                  />
+                  <span className=" text-[#FF0000]">
+                    {form.formState.errors.password.message}
+                  </span>
+                </div>
+              )}
             </div>
           </div>
           <button
@@ -94,8 +110,10 @@ export default function LoginForm() {
       </form>
 
       <div className="flex gap-2 mt-5">
-      <span className="text-[#979797]">{`Don't have an account?  — `}</span>
-      <Link className="text-[#3C74FF] hover:text-black" href='/register'>Create</Link>
+        <span className="text-[#979797]">{`Don't have an account?  — `}</span>
+        <Link className="text-[#3C74FF] hover:text-black" href="/register">
+          Create
+        </Link>
       </div>
     </div>
   );
