@@ -5,14 +5,15 @@ import AgreementsSection from "./AgreementsSection";
 import PartnersSection from "./PartnersSection";
 import { NavigationAccordion } from "./NavigationAccordion";
 import { PartnersAccordion } from "./PartnersAccordion";
+import FooterMenu from "./FooterMenu";
 export default function Footer() {
   return (
-    <footer className="px-4 flex flex-col gap-8  flex-nowrap items-center px-6 justify-between md:container md:mx-auto md:flex-wrap md:px-0">
+    <footer className="flex flex-col gap-8  flex-nowrap items-center px-6 justify-between md:container md:mx-auto md:flex-wrap relative">
       <AppDownloadSection />
-       <NavigationAccordion/>
+      <NavigationAccordion />
       <Navigation />
       <AgreementsSection />
-      <PartnersAccordion/>
+      <PartnersAccordion />
       <PartnersSection />
       <div className="w-full px-4 pb-8 flex justify-center pt-6 ">
         <div>
@@ -21,6 +22,7 @@ export default function Footer() {
           </span>
         </div>
       </div>
+      <FooterMenu />
     </footer>
   );
 }

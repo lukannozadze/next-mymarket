@@ -8,7 +8,7 @@ import { ReactNode } from "react";
 
 export default function Header() {
   return (
-    <header className="sticky top-0 z-20 py-4 shadow-lg md:shadow-none ">
+    <header className="sticky top-0 z-40 bg-white py-4 shadow-lg md:shadow-none ">
       <div className="mx-auto flex justify-between items-center max-w-[1440px]">
         <div className="flex gap-5 max-w-96">
           <Image src="/logo.svg" alt="logo" width={150} height={41} />

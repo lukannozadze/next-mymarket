@@ -3,7 +3,8 @@ import Image from "next/image";
 
 export default function SearchForm() {
   return (
-    <form className="items-center hidden"> //flex
+    <form className="items-center hidden">  
+    {/* flex */}
       <Input
         className="w-80 h-9 border-0 border-t border-b border-l border-gray-300 border-r-hidden"
         placeholder="ძებნა"

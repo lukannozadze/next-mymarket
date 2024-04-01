@@ -12,13 +12,14 @@ export default async function Home() {
     redirect("/login");
   }
   return (
-      <div className="flex flex-col  justify-between relative">
+      <div className="flex flex-col justify-between relative ">
+        
         <HamburgerMenu />
         <Header />
         <div className="hidden md:block">
           <Wrapper />
         </div>
-        <main className="min-h-screen px-6">
+        <main className="min-h-screen px-6 z-10">
           <form action={signOut}>
             <button>Log Out</button>
           </form>
