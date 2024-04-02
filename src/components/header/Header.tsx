@@ -5,11 +5,17 @@ import SignInButton from "../ui/SignInButton";
 import SearchForm from "./SearchForm";
 import HamburgerIcon from "./HamburgerIcon";
 import { ReactNode } from "react";
+import Wrapper from "../ui/wrapper";
+import Link from "next/link";
 
-export default function Header() {
+type Props = {
+  classnames?:string
+}
+
+export default function Header({classnames}:Props) {
   return (
-    <header className="sticky top-0 z-40 bg-white py-4 shadow-lg md:shadow-none ">
-      <div className="mx-auto flex justify-between items-center max-w-[1440px]">
+    <header className=  {` py-2 shadow-lg md:shadow-none ${classnames}`}>
+      <div className="mx-auto flex justify-between items-center max-w-[1440px] px-6">
         <div className="flex gap-5 max-w-96">
           <Image src="/logo.svg" alt="logo" width={150} height={41} />
           <SearchForm />
@@ -49,6 +55,9 @@ export default function Header() {
           />
           <HamburgerIcon />
         </div>
+      </div>
+      <div className="hidden md:block pt-6">
+        <Wrapper />
       </div>
     </header>
   );
