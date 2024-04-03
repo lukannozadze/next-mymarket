@@ -1,6 +1,7 @@
 'use client'
 import data from '../../../public/data/data.json'
 import Image from 'next/image'
+import Link from 'next/link'
 console.log(data[0].items[2].status==='super vip');
 const superVip = data.map((arr=>arr.items.filter(el=>el.status==='super vip')))
 console.log(superVip);
@@ -13,10 +14,10 @@ export default function Categories() {
           <span className='text-white absolute '>All Categories</span>
         </div>
       {data.map((category)=>{
-        return <div key={category.id} className='relative w-max'>
+        return <Link href={category.id} key={category.id} className='relative w-max'>
           <span className='absolute top-3 left-3 z-20 font-medium'>{category.name}</span>
           <Image className='hover:scale-105 transition-all' src={category.image} alt='category' width={170} height={120}></Image>
-        </div>
+        </Link>
       })}
       </div>
     </section>

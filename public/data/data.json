@@ -6,7 +6,7 @@
     "items": [
       {
         "id": 1,
-        "image": "HP",
+        "image": "/images/products/laptops/laptop.jpg",
         "brand": "HP",
         "HDD Capacity": "Not Included",
         "Keyboard lighting": "Yes",
@@ -23,7 +23,7 @@
       },
       {
         "id": 2,
-        "image": "HP",
+        "image": "/images/products/laptops/laptop2.jpg",
         "brand": "Lenovo",
         "HDD Capacity": "Included",
         "Keyboard lighting": "Yes",
@@ -40,7 +40,7 @@
       },
       {
         "id": 3,
-        "image": "HP",
+        "image": "/images/products/laptops/laptop3.jpg",
         "brand": "Acer",
         "HDD Capacity": "Not Included",
         "Keyboard lighting": "Yes",
@@ -57,7 +57,7 @@
       },
       {
         "id": 4,
-        "image": "HP",
+        "image": "/images/products/laptops/laptop4.jpg",
         "brand": "Lenovo",
         "HDD Capacity": "Included",
         "Keyboard lighting": "No",
@@ -74,7 +74,7 @@
       },
       {
         "id": 5,
-        "image": "HP",
+        "image": "/images/products/laptops/laptop1.jpg",
         "brand": "HP",
         "HDD Capacity": "Not Included",
         "Keyboard lighting": "No",
@@ -91,7 +91,7 @@
       },
       {
         "id": 6,
-        "image": "HP",
+        "image": "/images/products/laptops/laptop6.jpg",
         "brand": "Asus VivoBook",
         "HDD Capacity": "Not Included",
         "Keyboard lighting": "Yes",
@@ -108,7 +108,7 @@
       },
       {
         "id": 7,
-        "image": "HP",
+        "image": "/images/products/laptops/laptop7.jpg",
         "brand": "Lenovo",
         "HDD Capacity": "Not Included",
         "Keyboard lighting": "Yes",
@@ -125,7 +125,7 @@
       },
       {
         "id": 8,
-        "image": "HP",
+        "image": "/images/products/laptops/laptop8.jpg",
         "brand": "Dell",
         "HDD Capacity": "Not Included",
         "Keyboard lighting": "No",
@@ -142,7 +142,7 @@
       },
       {
         "id": 9,
-        "image": "HP",
+        "image": "/images/products/laptops/laptop9.jpg",
         "brand": "Acer",
         "HDD Capacity": "Included",
         "Keyboard lighting": "Yes",
@@ -159,7 +159,7 @@
       },
       {
         "id": 10,
-        "image": "HP",
+        "image": "/images/products/laptops/laptop10.jpg",
         "brand": "Lenovo",
         "HDD Capacity": "Not Included",
         "Keyboard lighting": "No",
