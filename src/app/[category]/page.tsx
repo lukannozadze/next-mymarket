@@ -1,10 +1,10 @@
 
 export const dynamicParams = false
-import Products from '@/components/home/Products';
+
 import data from '../../../public/data/data.json'
 import Image from 'next/image'
 import Wrapper from '@/components/ui/wrapper';
-// Return a list of `params` to populate the [slug] dynamic segment
+
 export async function generateStaticParams() {
 
   return data.map((category) => ({
@@ -12,13 +12,12 @@ export async function generateStaticParams() {
   }))
 }
  
-// Multiple versions of this page will be statically generated
-// using the `params` returned by `generateStaticParams`
+
 export default function Page({ params }: {params:{category:string}}) {
   const { category } = params
   const [filterByCategory] = data.filter((item)=>item.id === category);
   console.log(filterByCategory.items)
-  // ...
+
 
   return <>
     <div className="py-8 w-full flex items-center justify-center bg-[#f1f3f6] mx-auto">
