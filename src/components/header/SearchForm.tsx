@@ -1,9 +1,14 @@
 import { Input } from "@/components/ui/input";
 import Image from "next/image";
 
-export default function SearchForm() {
+type Props = {
+  inputClass?:string
+}
+
+
+export default function SearchForm({inputClass}:Props) {
   return (
-    <form className="items-center hidden">  
+    <form className={`items-center flex  ${inputClass}`}>  
     {/* flex */}
       <Input
         className="w-80 h-9 border-0 border-t border-b border-l border-gray-300 border-r-hidden"
