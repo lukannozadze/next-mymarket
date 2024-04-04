@@ -27,7 +27,7 @@ export default async function Home() {
           <form action={signOut}>
             <button>Log Out</button>
             <Categories/>
-            {/* <Products/> */}
+             <Products/>
           </form>
         </main>
         <Footer />
