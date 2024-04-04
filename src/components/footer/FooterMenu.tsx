@@ -34,7 +34,9 @@ const footerMenuItems = [
 ];
 export default function FooterMenu() {
   return (
-    <div className="flex fixed left-0 bottom-0 z-50 w-full px-6 pt-4 pb-4 bg-white justify-between items-center  drop-shadow-[0_-2px_16px_rgba(0,0,0,0.08)] md:hidden ">
+      
+    <div className="flex w-screen fixed left-0 bottom-0 z-50  px-6 pt-4 pb-4 bg-white justify-between items-center  drop-shadow-[0_-2px_16px_rgba(0,0,0,0.08)] md:hidden ">
+        
       {footerMenuItems.map((item) => {
         return (
           <div key={item.id} className="flex flex-col items-center">
@@ -46,5 +48,6 @@ export default function FooterMenu() {
         );
       })}
     </div>
+    
   );
 }

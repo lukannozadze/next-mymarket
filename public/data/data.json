@@ -199,5 +199,11 @@
     "name": "Watches",
     "image": "/images/categories/category-watch.jpg",
     "items": []
+  },
+  {
+    "id": "laptops",
+    "name": "Laptop",
+    "image": "/images/categories/laptop-category.jpg",
+    "items": []
   }
 ]

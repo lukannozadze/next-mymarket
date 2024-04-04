@@ -8,7 +8,7 @@ import { PartnersAccordion } from "./PartnersAccordion";
 import FooterMenu from "./FooterMenu";
 export default function Footer() {
   return (
-    <footer className="flex flex-col gap-8  flex-nowrap items-center px-6 justify-between md:container md:mx-auto md:flex-wrap relative">
+    <footer className="flex flex-col gap-8 w-screen  flex-nowrap items-center px-6 justify-between md:container md:mx-auto md:flex-wrap relative">
       <AppDownloadSection />
       <NavigationAccordion />
       <Navigation />

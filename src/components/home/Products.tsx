@@ -28,7 +28,7 @@ export default function Products() {
         <h2 className="font-bold">SUPER VIP</h2>
       </div>
       
-      <section className="flex gap-8">
+      <section className="flex gap-8 flex-wrap">
         {superVip.map((product) => {
           
           return (
