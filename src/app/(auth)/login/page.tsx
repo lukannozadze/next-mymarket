@@ -10,8 +10,9 @@ export default async function page() {
     redirect("/");
   }
   return (
-    <>
-      <LoginForm />
-    </>
+     <div className="flex justify-center">
+       <LoginForm />
+     </div>
+    
   );
 }

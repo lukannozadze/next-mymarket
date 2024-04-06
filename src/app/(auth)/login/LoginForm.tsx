@@ -10,6 +10,9 @@ import { ToastAction } from "@/components/ui/toast";
 import { useToast } from "@/components/ui/use-toast";
 import { useEffect } from "react";
 import { error } from "console";
+import LanguageSelect from "../shared/LanguageSelect";
+import { useRef, useState } from "react";
+
 
 const formSchema = z.object({
   email: z.string().email({ message: "Enter the Email" }).min(1),
@@ -19,7 +22,18 @@ const formSchema = z.object({
 });
 
 export default function LoginForm() {
+
+  const [passType, setPassType] = useState("password");
   const { toast } = useToast();
+
+  const showPassClickHandler = () => {
+    if (passType === "text") {
+      setPassType("password");
+    } else {
+      setPassType("text");
+    }
+  };
+  const showPassImgPath = passType==='password'?'/icons/show-pass.svg':'/icons/hide-pass.svg';
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
 
@@ -47,21 +61,24 @@ export default function LoginForm() {
     console.log(data);
   }
   return (
-    <div className="flex flex-col items-center justify-center mt-16 ">
-      <Image src="/tnet-en.svg" alt="auth-tnet" width={185} height={33} />
-      <form
-        className="flex flex-col pt-[92px] w-[50%] items-center"
-        onSubmit={form.handleSubmit(onSubmit)}
-      >
-        <div className="w-[90%] flex flex-col items-center gap-4">
-          <h2 className="w-[60%] text-3xl font-bold">Authorization</h2>
-          <div className="w-[100%] flex flex-col items-center gap-3">
-            <div className="w-[60%] flex flex-col  ">
+    <div className="flex flex-col  pt-12 max-w-[650px] w-[520px]">
+      <div className="w-full flex justify-between">
+        <Image src="/auth-logo.svg" alt="logo" width={185} height={33} />
+        <LanguageSelect />
+      </div>
+      <h2 className="w-full text-[32px] font-bold pt-[58px]">ავტორიზაცია</h2>
+      <div className="w-full flex flex-col items-center gap-4 pt-12">
+        <form
+          className="flex flex-col w-full  "
+          onSubmit={form.handleSubmit(onSubmit)}
+        >
+          <div className="w-full flex flex-col items-center gap-4">
+            <div className="w-full flex flex-col  ">
               <Input
-                className="w-[100%] p-4 rounded-lg"
+                className="w-full p-4 rounded-lg placeholder:text-[16px]"
                 {...form.register("email")}
                 type="text"
-                placeholder="Email"
+                placeholder="ელფოსტა"
               />
               {form.formState.errors.email && (
                 <div className="flex gap-3 items-center ">
@@ -77,12 +94,12 @@ export default function LoginForm() {
                 </div>
               )}
             </div>
-            <div className="w-[60%] flex flex-col  ">
+            <div className="w-full flex flex-col pb-6 relative">
               <Input
-                className="w-[100%] p-4 rounded-lg"
+                className="w-full p-4 rounded-lg placeholder:text-[16px]"
                 {...form.register("password")}
-                type="password"
-                placeholder="Password"
+                type={passType}
+                placeholder="პაროლი"
               />
               {form.formState.errors.password && (
                 <div className="flex gap-3 items-center ">
@@ -97,22 +114,33 @@ export default function LoginForm() {
                   </span>
                 </div>
               )}
+              <Image
+                onClick={showPassClickHandler}
+                src={showPassImgPath}
+                alt="error"
+                width={24}
+                height={24}
+                className="absolute right-4 bottom-1/2 cursor-pointer"
+              />
             </div>
+          </div>
+          <div className="flex justify-end pb-8 font-medium">
+            <Link href="#">პაროლის აღდგენა</Link>
           </div>
           <button
             onClick={() => console.log(form.formState.errors)}
-            className="font-bold mt-4 w-[60%] text-white bg-[#3C74FF] rounded-full py-3"
+            className="w-full text-white bg-[#3C74FF] rounded-full py-3"
             type="submit"
           >
-            Confirm
+            შესვლა
           </button>
-        </div>
-      </form>
+        </form>
+      </div>
 
-      <div className="flex gap-2 mt-5">
-        <span className="text-[#979797]">{`Don't have an account?  — `}</span>
+      <div className="flex gap-2  justify-center pt-10">
+        <span className="text-[#979797]">{`არ გაქვს ანგარიში?  — `}</span>
         <Link className="text-[#3C74FF] hover:text-black" href="/register">
-          Create
+          შექმენი
         </Link>
       </div>
     </div>
