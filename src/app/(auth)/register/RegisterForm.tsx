@@ -12,6 +12,7 @@ import LanguageSelect from "../shared/LanguageSelect";
 import { useState } from "react";
 import { GenderRadio } from "./GenderRadio";
 import { log } from "console";
+import ConfirmEmail from "./ConfirmEmail";
 
 const formSchema = z
   .object({
@@ -56,6 +57,7 @@ const formSchema = z
 export default function RegisterForm() {
   const [passType, setPassType] = useState("password");
   const [confirmType, setConfirmType] = useState("password");
+  const [regSuccess,setRegSuccess] = useState(false);
   const router = useRouter();
 
   const showPassClickHandler = () => {
@@ -94,20 +96,22 @@ export default function RegisterForm() {
   //   }
 
   async function onSubmit(data: z.infer<typeof formSchema>) {
-    // const result = await signUpWithEmailAndPassword(data);
+     const result = await signUpWithEmailAndPassword(data);
 
-    // const { error } = JSON.parse(result);
-    // if (error) {
-    //   console.log("error", error);
-    // } else {
-    //   //router.push('/')
-    //   setTimeout(() => {
-    //     router.push("/login");
-    //   }, 1000);
-    // }
+    const { error } = JSON.parse(result);
+    if (error) {
+      console.log("error", error);
+    } else {
+      setRegSuccess(true)
+    }
 
     console.log(data);
+    
   }
+   if(regSuccess){
+    return <ConfirmEmail/>
+   }
+   
   return (
     <div className="flex flex-col pt-12 max-w-[630px] w-[520px]">
 
