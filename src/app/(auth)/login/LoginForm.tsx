@@ -9,8 +9,7 @@ import { signInWithEmailAndPassword } from "../actions";
 import { ToastAction } from "@/components/ui/toast";
 import { useToast } from "@/components/ui/use-toast";
 import LanguageSelect from "../shared/LanguageSelect";
-import {useState } from "react";
-
+import { useState } from "react";
 
 const formSchema = z.object({
   email: z.string().email({ message: "Enter the Email" }).min(1),
@@ -20,7 +19,6 @@ const formSchema = z.object({
 });
 
 export default function LoginForm() {
-
   const [passType, setPassType] = useState("password");
   const { toast } = useToast();
 
@@ -31,7 +29,8 @@ export default function LoginForm() {
       setPassType("text");
     }
   };
-  const showPassImgPath = passType==='password'?'/icons/show-pass.svg':'/icons/hide-pass.svg';
+  const showPassImgPath =
+    passType === "password" ? "/icons/show-pass.svg" : "/icons/hide-pass.svg";
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
 
@@ -92,13 +91,23 @@ export default function LoginForm() {
                 </div>
               )}
             </div>
-            <div className="w-full flex flex-col pb-6 relative">
-              <Input
-                className="w-full p-4 rounded-lg placeholder:text-[16px]"
-                {...form.register("password")}
-                type={passType}
-                placeholder="პაროლი"
-              />
+            <div className="w-full flex flex-col pb-6">
+              <div className="relative">
+                <Input
+                  className="w-full p-4 rounded-lg placeholder:text-[16px]"
+                  {...form.register("password")}
+                  type={passType}
+                  placeholder="პაროლი"
+                />
+                <Image
+                  onClick={showPassClickHandler}
+                  src={showPassImgPath}
+                  alt="error"
+                  width={24}
+                  height={24}
+                  className="absolute right-4 bottom-[28%] cursor-pointer"
+                />
+              </div>
               {form.formState.errors.password && (
                 <div className="flex gap-3 items-center ">
                   <Image
@@ -112,18 +121,10 @@ export default function LoginForm() {
                   </span>
                 </div>
               )}
-              <Image
-                onClick={showPassClickHandler}
-                src={showPassImgPath}
-                alt="error"
-                width={24}
-                height={24}
-                className="absolute right-4 bottom-1/2 cursor-pointer"
-              />
             </div>
           </div>
           <div className="flex justify-end pb-8 font-medium">
-            <Link href="#">პაროლის აღდგენა</Link>
+            <Link href="/request-password">პაროლის აღდგენა</Link>
           </div>
           <button
             onClick={() => console.log(form.formState.errors)}

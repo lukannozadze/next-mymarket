@@ -86,14 +86,8 @@ export default function RegisterForm() {
       name: "",
       lastname: "",
       telephone: "",
-      rules:false
     },
   });
- 
-
-  //   if(){
-  //     router.push('/')
-  //   }
 
   async function onSubmit(data: z.infer<typeof formSchema>) {
      const result = await signUpWithEmailAndPassword(data);
@@ -111,7 +105,7 @@ export default function RegisterForm() {
    if(regSuccess){
     return <ConfirmEmail/>
    }
-   
+
   return (
     <div className="flex flex-col pt-12 max-w-[630px] w-[520px]">
 
@@ -147,8 +141,9 @@ export default function RegisterForm() {
                 </div>
               )}
             </div>
-            <div className="relative w-full flex flex-col 
+            <div className="w-full flex flex-col 
              ">
+              <div className="relative">
               <Input
                 className="w-full p-4 rounded-lg placeholder:text-[16px]"
                 {...register("password")}
@@ -161,8 +156,9 @@ export default function RegisterForm() {
                     alt="error"
                     width={24}
                     height={24}
-                    className="absolute right-4 bottom-[30%] cursor-pointer"
+                    className="absolute right-4 bottom-[28%] cursor-pointer"
                   />
+              </div>
               {formState.errors.password && (
                 <div className="flex gap-3 items-center ">
                   <Image
@@ -178,7 +174,8 @@ export default function RegisterForm() {
               )}
             </div>
 
-            <div className="relative w-full flex flex-col  ">
+            <div className="w-full flex flex-col  ">
+              <div className="relative">
               <Input
                 className="w-full p-4 rounded-lg placeholder:text-[16px]"
                 {...register("confirm")}
@@ -191,8 +188,9 @@ export default function RegisterForm() {
                     alt="error"
                     width={24}
                     height={24}
-                    className="absolute right-4 bottom-[30%] cursor-pointer"
+                    className="absolute right-4 bottom-[28%] cursor-pointer"
                   />
+              </div>
               {formState.errors.confirm && (
                 <div className="flex gap-3 items-center ">
                   <Image

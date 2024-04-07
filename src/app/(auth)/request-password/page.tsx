@@ -5,11 +5,12 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import Image from "next/image";
 import { Input } from "@/components/ui/input";
 import Link from "next/link";
-import { resetPassword, signInWithEmailAndPassword } from "../actions";
+import { requestPasswordReset, signInWithEmailAndPassword } from "../actions";
 import { ToastAction } from "@/components/ui/toast";
 import { useToast } from "@/components/ui/use-toast";
 import LanguageSelect from "../shared/LanguageSelect";
 import {useState } from "react";
+import RequestNotification from "./RequestNotification";
 
 
 const formSchema = z.object({
@@ -17,7 +18,7 @@ const formSchema = z.object({
 });
 
 export default function LoginForm() {
-
+  const [isSuccess,setIsSuccess] = useState(false);
 
   const { toast } = useToast();
 
@@ -31,9 +32,17 @@ export default function LoginForm() {
   });
 
   async function onSubmit(data: z.infer<typeof formSchema>) {
-   await resetPassword(data);
-
+   const error = await requestPasswordReset(data);
+   console.log(error);
+   if(error === 'null'){
+    setIsSuccess(true);
+   }
   }
+ console.log(isSuccess);
+  if(isSuccess){
+    return <RequestNotification/>
+  }
+
   return (
     <div className="w-full flex items-center justify-center">
     <div className="flex flex-col  pt-12 max-w-[650px] w-[520px]">
@@ -78,7 +87,7 @@ export default function LoginForm() {
             className="w-full text-white bg-[#3C74FF] rounded-full py-3"
             type="submit"
           >
-            შესვლა
+            გაგრძელება
           </button>
         </form>
       </div>

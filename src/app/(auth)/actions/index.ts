@@ -33,11 +33,25 @@ export async function signOut() {
   await supabase.auth.signOut();
   redirect("/login");
 }
-const origin = headers().get('origin');
-export async function resetPassword(data: {
-  email: string;
-}) {
-  const supabase = await createSupabaseServerClient();
-  await supabase.auth.resetPasswordForEmail(data.email,{redirectTo:`${origin}/register`});
 
+const origin = headers().get("origin");
+export async function requestPasswordReset(data: { email: string }) {
+  const supabase = await createSupabaseServerClient();
+  const {error} = await supabase.auth.resetPasswordForEmail(data.email, {
+    redirectTo: `${origin}/reset-password`,
+  });
+  return JSON.stringify(error);
+}
+
+export async function changePassword(data: { password: string },code:string | null) {
+   if(code){
+    const supabase = await createSupabaseServerClient();
+    const {error} = await supabase.auth.exchangeCodeForSession(code)
+    if(error){
+       return JSON.stringify(error);
+    }
+   }
+  const supabase = await createSupabaseServerClient();
+  const result = await supabase.auth.updateUser({ password: data.password });
+  return JSON.stringify(result);
 }
