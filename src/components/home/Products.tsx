@@ -27,7 +27,7 @@ export default function Products() {
       <section className="flex gap-8">
         {superVip.map((product) => {
           return (
-            <div>
+            <div key={product.id}>
               <Image
                 src="/images/categories/category-dog.jpg"
                 alt="#"
@@ -55,7 +55,7 @@ export default function Products() {
       <section className="flex gap-8">
         {vipPlus.map((product) => {
           return (
-            <div>
+            <div key={product.id}>
               <Image
                 src="/images/categories/category-dog.jpg"
                 alt="#"
@@ -81,7 +81,7 @@ export default function Products() {
       <section className="flex gap-8">
         {vip.map((product) => {
           return (
-            <div>
+            <div key={product.id}>
               <Image
                 src="/images/categories/category-dog.jpg"
                 alt="#"
