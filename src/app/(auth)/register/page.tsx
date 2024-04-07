@@ -10,7 +10,9 @@ export default async function page() {
   }
   return (
     <>
+    <div className="flex justify-center">
       <RegisterForm />
+    </div>
     </>
   );
 }

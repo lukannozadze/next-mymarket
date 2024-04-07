@@ -1,6 +1,6 @@
 "use client";
 import { z } from "zod";
-import { useForm } from "react-hook-form";
+import { useForm,Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { signUpWithEmailAndPassword } from "../actions";
 import Image from "next/image";
@@ -8,6 +8,10 @@ import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
 import { redirect, useRouter } from "next/navigation";
 import Link from "next/link";
+import LanguageSelect from "../shared/LanguageSelect";
+import { useState } from "react";
+import { GenderRadio } from "./GenderRadio";
+import { log } from "console";
 
 const formSchema = z
   .object({
@@ -16,6 +20,7 @@ const formSchema = z
       message: " must contain at least 6 character(s).",
     }),
     confirm: z.string().min(6),
+    
     name: z
       .string()
       .min(1, {
@@ -41,6 +46,7 @@ const formSchema = z
       .min(9, {
         message: "Wrong format number",
       }),
+      rules:z.boolean().default(false).optional()
   })
   .refine((data) => data.confirm === data.password, {
     message: "Passwords did not match",
@@ -48,8 +54,27 @@ const formSchema = z
   });
 
 export default function RegisterForm() {
+  const [passType, setPassType] = useState("password");
+  const [confirmType, setConfirmType] = useState("password");
   const router = useRouter();
-  const form = useForm<z.infer<typeof formSchema>>({
+
+  const showPassClickHandler = () => {
+    if (passType === "text") {
+      setPassType("password");
+    } else {
+      setPassType("text");
+    }
+  };
+  const showConfirmClickHandler = () => {
+    if (confirmType === "text") {
+      setConfirmType("password");
+    } else {
+      setConfirmType("text");
+    }
+  };
+  const showPassImgPath = passType==='password'?'/icons/show-pass.svg':'/icons/hide-pass.svg';
+  const showConfirmImgPath = confirmType==='password'?'/icons/show-pass.svg':'/icons/hide-pass.svg';
+  const {register,handleSubmit,control,formState} = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
 
     defaultValues: {
@@ -59,46 +84,52 @@ export default function RegisterForm() {
       name: "",
       lastname: "",
       telephone: "",
+      rules:false
     },
   });
+ 
 
   //   if(){
   //     router.push('/')
   //   }
 
   async function onSubmit(data: z.infer<typeof formSchema>) {
-    const result = await signUpWithEmailAndPassword(data);
+    // const result = await signUpWithEmailAndPassword(data);
 
-    const { error } = JSON.parse(result);
-    if (error) {
-      console.log("error", error);
-    } else {
-      //router.push('/')
-      setTimeout(() => {
-        router.push("/login");
-      }, 1000);
-    }
+    // const { error } = JSON.parse(result);
+    // if (error) {
+    //   console.log("error", error);
+    // } else {
+    //   //router.push('/')
+    //   setTimeout(() => {
+    //     router.push("/login");
+    //   }, 1000);
+    // }
 
     console.log(data);
   }
   return (
-    <div className="flex flex-col items-center justify-center mt-16 ">
-      <Image src="/tnet-en.svg" alt="auth-tnet" width={185} height={33} />
+    <div className="flex flex-col pt-12 max-w-[630px] w-[520px]">
+
+      <div className="w-full flex justify-between">
+        <Image src="/auth-logo.svg" alt="logo" width={185} height={33} />
+        <LanguageSelect />
+      </div>
       <form
-        className="flex flex-col pt-[92px] w-[50%] items-center"
-        onSubmit={form.handleSubmit(onSubmit)}
+        className="flex flex-col pt-[58px] items-center"
+        onSubmit={handleSubmit(onSubmit)}
       >
-        <div className="w-[90%] flex flex-col items-center gap-4">
-          <h2 className="w-[60%] text-3xl font-bold">Create Account</h2>
-          <div className="w-[100%] flex flex-col items-center gap-3">
-            <div className="w-[60%] flex flex-col  ">
+        <div className="w-full flex flex-col items-center gap-4">
+          <h2 className="w-full text-3xl pb-6 font-bold">ანგარიშის შექმნა</h2>
+          <div className="w-full flex flex-col items-center gap-4">
+            <div className="w-full flex flex-col  ">
               <Input
-                className="w-[100%] p-4 rounded-lg"
-                {...form.register("email")}
+                className="w-full p-4 rounded-lg placeholder:text-[16px]"
+                {...register("email")}
                 type="text"
-                placeholder="Email"
+                placeholder="ელფოსტა"
               />
-              {form.formState.errors.email && (
+              {formState.errors.email && (
                 <div className="flex gap-3 items-center ">
                   <Image
                     src="/icons/error.png"
@@ -107,19 +138,28 @@ export default function RegisterForm() {
                     height={25}
                   />
                   <span className=" text-[#FF0000]">
-                    {form.formState.errors.email.message}
+                    {formState.errors.email.message}
                   </span>
                 </div>
               )}
             </div>
-            <div className="w-[60%] flex flex-col  ">
+            <div className="relative w-full flex flex-col 
+             ">
               <Input
-                className="w-[100%] p-4 rounded-lg"
-                {...form.register("password")}
-                type="password"
-                placeholder="Password"
+                className="w-full p-4 rounded-lg placeholder:text-[16px]"
+                {...register("password")}
+                type={passType}
+                placeholder="პაროლი"
               />
-              {form.formState.errors.password && (
+                  <Image
+                    onClick={showPassClickHandler}
+                    src={showPassImgPath}
+                    alt="error"
+                    width={24}
+                    height={24}
+                    className="absolute right-4 bottom-[30%] cursor-pointer"
+                  />
+              {formState.errors.password && (
                 <div className="flex gap-3 items-center ">
                   <Image
                     src="/icons/error.png"
@@ -128,20 +168,28 @@ export default function RegisterForm() {
                     height={25}
                   />
                   <span className=" text-[#FF0000]">
-                    {form.formState.errors.password.message}
+                    {formState.errors.password.message}
                   </span>
                 </div>
               )}
             </div>
 
-            <div className="w-[60%] flex flex-col  ">
+            <div className="relative w-full flex flex-col  ">
               <Input
-                className="w-[100%] p-4 rounded-lg"
-                {...form.register("confirm")}
-                type="password"
-                placeholder="Confirm the Password"
+                className="w-full p-4 rounded-lg placeholder:text-[16px]"
+                {...register("confirm")}
+                type={confirmType}
+                placeholder="გაიმეორე პაროლი"
               />
-              {form.formState.errors.confirm && (
+              <Image
+                    onClick={showConfirmClickHandler}
+                    src={showConfirmImgPath}
+                    alt="error"
+                    width={24}
+                    height={24}
+                    className="absolute right-4 bottom-[30%] cursor-pointer"
+                  />
+              {formState.errors.confirm && (
                 <div className="flex gap-3 items-center ">
                   <Image
                     src="/icons/error.png"
@@ -150,19 +198,22 @@ export default function RegisterForm() {
                     height={25}
                   />
                   <span className=" text-[#FF0000]">
-                    {form.formState.errors.confirm.message}
+                    {formState.errors.confirm.message}
                   </span>
                 </div>
               )}
             </div>
-            <div className="w-[60%] flex flex-col  ">
+            <div className="w-full flex text-gray-500">
+              <GenderRadio />
+            </div>
+            <div className="w-full flex flex-col pt-4  ">
               <Input
-                className="w-[100%] p-4 rounded-lg"
-                {...form.register("name")}
+                className="w-full p-4 rounded-lg placeholder:text-[16px]"
+                {...register("name")}
                 type="text"
-                placeholder="Name"
+                placeholder="სახელი"
               />
-              {form.formState.errors.name && (
+              {formState.errors.name && (
                 <div className="flex gap-3 items-center ">
                   <Image
                     src="/icons/error.png"
@@ -171,19 +222,19 @@ export default function RegisterForm() {
                     height={25}
                   />
                   <span className=" text-[#FF0000]">
-                    {form.formState.errors.name.message}
+                    {formState.errors.name.message}
                   </span>
                 </div>
               )}
             </div>
-            <div className="w-[60%] flex flex-col  ">
+            <div className="w-full flex flex-col">
               <Input
-                className="w-[100%] p-4 rounded-lg"
-                {...form.register("lastname")}
+                className="w-full p-4 rounded-lg placeholder:text-[16px]"
+                {...register("lastname")}
                 type="text"
-                placeholder="Lastname"
+                placeholder="გვარი"
               />
-              {form.formState.errors.lastname && (
+              {formState.errors.lastname && (
                 <div className="flex gap-3 items-center ">
                   <Image
                     src="/icons/error.png"
@@ -192,19 +243,19 @@ export default function RegisterForm() {
                     height={25}
                   />
                   <span className=" text-[#FF0000]">
-                    {form.formState.errors.lastname.message}
+                    {formState.errors.lastname.message}
                   </span>
                 </div>
               )}
             </div>
-            <div className="w-[60%] flex flex-col  ">
+            <div className="w-full flex flex-col  ">
               <Input
-                className="w-[100%] p-4 rounded-lg"
-                {...form.register("telephone")}
+                className="w-full p-4 rounded-lg placeholder:text-[16px]"
+                {...register("telephone")}
                 type="text"
-                placeholder="Mobile Number"
+                placeholder="ტელეფონის ნომერი"
               />
-              {form.formState.errors.telephone && (
+              {formState.errors.telephone && (
                 <div className="flex gap-3 items-center ">
                   <Image
                     src="/icons/error.png"
@@ -213,26 +264,36 @@ export default function RegisterForm() {
                     height={25}
                   />
                   <span className=" text-[#FF0000]">
-                    {form.formState.errors.telephone.message}
+                    {formState.errors.telephone.message}
                   </span>
                 </div>
               )}
+            </div>
+            <div className="w-full flex items-center gap-3">
+              <Checkbox {...register("rules")} className="w-5 h-5" />
+              <span>ვეთანხმები <Link className="text-[#3C74FF]" href='/'>წესებსა და პირობებს</Link></span>
+              
+            </div>
+            
+            <div className="w-full flex items-center gap-3">
+              <Checkbox className="w-5 h-5" />
+              <span>ვეთანხმები <Link className="text-[#3C74FF]" href='/'>კონფიდენციალობის პოლიტიკას</Link></span>
             </div>
           </div>
           <button
-            onClick={() => console.log(form.formState.errors)}
-            className="font-bold mt-4 w-[60%] text-white bg-[#3C74FF] rounded-full py-3"
+            onClick={() => console.log(formState.errors)}
+            className="mt-4 w-full text-white bg-[#3C74FF] rounded-full py-3"
             type="submit"
           >
-            Confirm
+            დადასტურება
           </button>
         </div>
       </form>
 
-      <div className="flex gap-2 mt-5">
-        <span className="text-[#979797]">With an existing account</span>
+      <div className="flex justify-center gap-2 mt-10 mb-[75px]">
+        <span className="text-[#979797]">არსებული ანგარიშით</span>
         <Link className="text-[#3C74FF] hover:text-black" href="/login">
-          Log In
+          შესვლა
         </Link>
       </div>
     </div>
