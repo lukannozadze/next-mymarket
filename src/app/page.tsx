@@ -21,13 +21,13 @@ export default async function Home() {
       <div className="flex flex-col justify-between relative ">
         
         <HamburgerMenu />
-        <Header classnames="sticky top-0 z-40 bg-white" />
+        <Header inputClass="hidden" classnames="sticky top-0 z-40 bg-white" />
         <Services/>
-        <main className="min-h-screen px-6 z-10">
+        <main className="min-h-screen w-full px-6 z-10 flex flex-col jutify-center">
           <form action={signOut}>
             <button>Log Out</button>
             <Categories/>
-            <Products/>
+             <Products/>
           </form>
         </main>
         <Footer />
