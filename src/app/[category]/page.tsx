@@ -1,4 +1,3 @@
-
 export const dynamicParams = false
 
 import data from '../../../public/data/data.json'
