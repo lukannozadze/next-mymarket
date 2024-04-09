@@ -1,0 +1,49 @@
+{
+  "Authorization": {
+    "logoPath":"/auth-logo.svg",
+    "title": "ავტორიზაცია",
+    "email":"ელფოსტა",
+    "password":"პაროლი",
+    "recover":"პაროლის აღდგენა",
+    "login":"შესვლა",
+    "redirectQuestion":"არ გაქვს ანგარიში?",
+    "redirectAction":"შექმენი"
+  },
+  "Registration": {
+    "logoPath":"/auth-logo.svg",
+    "title": "ანგარიშის შექმნა",
+    "email":"ელფოსტა",
+    "password":"პაროლი",
+    "repeat":"გაიმეორე პაროლი",
+    "gender":"სქესი",
+    "male":"მამრობითი",
+    "female":"მდედრობითი",
+    "name":"სახელი",
+    "lastname":"გვარი",
+    "telephone":"ტელეფონის ნომერი",
+    "termsStart":"ვეთანხმები",
+    "termsEnd":"წესებსა და პირობებს",
+    "policyStart":"ვეთანხმები",
+    "policyEnd":"კონფიდენციალობის პოლიტიკას",
+    "confirm":"დადასტურება",
+    "redirectQuestion":"არსებული ანგარიშით",
+    "redirectAction":"შესვლა",
+    "confirmEmailText":"მეილი დასადასტურებლად წარმატებით გამოიგზავნა"
+  },
+  "RequestPassword":{
+    "logoPath":"/auth-logo.svg",
+    "title": "პაროლის აღდგენა",
+    "email":"ელფოსტა",
+    "done":"გაგრძელება",
+    "notification":"პაროლის აღსადგენი ლინკი გამოგზავნილია. შეამოწმე მეილი და მიყევი ინსტრუქციას რომ შეცვალო პაროლი"
+    
+  },
+
+  "ResetPassword":{
+    "logoPath":"/auth-logo.svg",
+    "title": "პაროლის შეცვლა",
+    "password":"პაროლი",
+    "repeat":"ახალი პაროლი",
+    "done":"გაგრძელება"
+  }
+}

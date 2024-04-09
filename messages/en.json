@@ -1,0 +1,50 @@
+{
+  "Authorization": {
+    "logoPath":"/tnet-en.svg",
+    "title": "Authorization",
+    "email":"Email",
+    "password":"Password",
+    "recover":"Recover password",
+    "login":"Log in",
+    "redirectQuestion":"Don't have an account?",
+    "redirectAction":"Create"
+
+  },
+  "Registration": {
+    "logoPath":"/tnet-en.svg",
+    "title": "Create Account",
+    "email":"Email",
+    "password":"Password",
+    "repeat":"Repeat the password",
+    "gender":"Gender",
+    "male":"Male",
+    "female":"Female",
+    "name":"Name",
+    "lastname":"Last Name",
+    "telephone":"Phone Number",
+    "termsStart":"I agree with",
+    "termsEnd":"Terms and Conditions",
+    "policyStart":"I agree to the",
+    "policyEnd":"Privacy Policy",
+    "confirm":"Confirm",
+    "redirectQuestion":"With an existing account",
+    "redirectAction":"Log in",
+    "confirmEmailText":"Confirmation Email Sent Successfully"
+  },
+  "RequestPassword":{
+    "logoPath":"/tnet-en.svg",
+    "title": "Recover password",
+    "email":"Email",
+    "done":"Continue",
+    "notification":"Password reset link sent. Check your email and click the link to reset your password"
+  },
+
+  "ResetPassword":{
+    "logoPath":"/tnet-en.svg",
+    "title": "Change password",
+    "password":"Password",
+    "repeat":"Repeat the password",
+    "done":"Continue"
+  }
+
+}

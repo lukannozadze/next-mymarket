@@ -1,0 +1,49 @@
+{
+  "Authorization": {
+    "logoPath":"/tnet-en.svg",
+    "title": "Authorization",
+    "email":"Эл. почта",
+    "password":"Пароль",
+    "recover":"Восстановить пароль",
+    "login":"Вход",
+    "redirectQuestion":"У вас нет учетной записи",
+    "redirectAction":"создавать"
+  },
+  "Registration": {
+    "logoPath":"/tnet-en.svg",
+    "title": "Завести аккаунт",
+    "email":"Эл. почта",
+    "password":"Пароль",
+    "repeat":"Повторите пароль",
+    "gender":"Род",
+    "male":"мужской",
+    "female":"женский",
+    "name":"имя",
+    "lastname":"Фамилия",
+    "telephone":"Телефон",
+    "termsStart":"Соглашаюсь с",
+    "termsEnd":"правилами сайта",
+    "policyStart":"Соглашаюсь с",
+    "policyEnd":"политика конфиденциальности",
+    "confirm":"подтверждать",
+    "redirectQuestion":"С существующей учетной записью",
+    "redirectAction":"Авторизоваться",
+    "confirmEmailText":"Письмо с подтверждением успешно отправлено"
+  },
+
+  "RequestPassword":{
+    "logoPath":"/tnet-en.svg",
+    "title": "Восстановить пароль",
+    "email":"Эл. почта",
+    "done":"продолжать",
+    "notification":"Ссылка для сброса пароля отправлена. Проверьте свою электронную почту и нажмите ссылку, чтобы сбросить пароль"
+  },
+
+  "ResetPassword":{
+    "logoPath":"/tnet-en.svg",
+    "title": "Изменить пароль",
+    "password":"Новый пароль",
+    "repeat":"Повторите пароль",
+    "done":"продолжать"
+  }
+}
