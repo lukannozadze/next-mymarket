@@ -14,5 +14,5 @@ export default function page({ params }: Props) {
   if (!product) {
     return <div>Not Found!</div>;
   }
-  return <div>{product.brand}</div>;
+  return <div>{product.title}</div>;
 }
