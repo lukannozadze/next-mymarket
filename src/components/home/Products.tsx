@@ -2,18 +2,32 @@
 import data from "../../../public/data/data.json";
 import Image from "next/image";
 import Wrapper from "../ui/wrapper";
+import { Laptop, Mobile,Bicycle } from "@/service/types";
+
 export default function Products() {
   //console.log(data[0].items[0]['Processor type']);
-  const [superVip] = data.map((arr) =>
-    arr.items.filter((el) => el.status === "super vip")
-  );
-  const [vipPlus] = data.map((arr) =>
-    arr.items.filter((el) => el.status === "vip+")
-  );
-  const [vip] = data.map((arr) =>
-    arr.items.filter((el) => el.status === "vip")
-  );
+  const superVip:(Laptop | Mobile |Bicycle)[] = [];
+  const vip:(Laptop | Mobile | Bicycle)[] = [];
+  const vipPlus:(Laptop | Mobile | Bicycle)[] = [];
 
+  data.map((category) => {
+    category.items.map((item) => {
+      switch (item.status) {
+        case "super vip":
+          superVip.push(item);
+          break;
+        case "vip":
+          vip.push(item);
+          break;
+        case "vip+":
+          vipPlus.push(item);
+          break;
+        default:
+          break;
+      }
+    });
+  });
+  console.log(vip);
   return (
     <div className="py-8 w-full flex items-center justify-center">
       <div className="w-[1440px] px-6">
@@ -22,16 +36,16 @@ export default function Products() {
           <h2 className="font-bold">SUPER VIP</h2>
         </div>
 
-        <section className="flex gap-8 flex-wrap">
+        <section className="flex flex-wrap justify-between">
           {superVip.map((product) => {
             return (
               <div
                 key={product.id}
-                className=" px-[6px] pt-3 rounded-xl pb-2 cursor-pointer"
+                className=" px-[6px] pt-3  pb-2 cursor-pointer"
               >
-                <div className="w-[210px] h-[180px]">
+                <div className="w-[210px] h-[180px] ">
                   <Image
-                    className="object-cover rounded-lg"
+                    className="object-cover rounded-xl"
                     src={product.image}
                     alt="#"
                     width={0}
@@ -41,8 +55,8 @@ export default function Products() {
                   />
                 </div>
 
-                <p className="mt-[18px]">{product.title}</p>
-                <span className="font-bold my-5">{`${product.price} GEL`}</span>
+                <p className="mt-[18px] text-sm">{product.title}</p>
+                <span className="font-bold my-5">{`${product.price}₾`}</span>
               </div>
             );
           })}
@@ -50,10 +64,10 @@ export default function Products() {
 
         <div className="flex items-center gap-4 mb-4 mt-20">
           <Image src="/icons/vip-plus.svg" alt="#" width={30} height={36} />
-          <h2 className="font-bold">SUPER VIP</h2>
+          <h2 className="font-bold">VIP+</h2>
         </div>
 
-        <section className="flex gap-8">
+        <section className="flex flex-wrap justify-between">
           {vipPlus.map((product) => {
             return (
               <div
@@ -72,8 +86,8 @@ export default function Products() {
                   />
                 </div>
 
-                <p className="mt-[18px]">{product.title}</p>
-                <span className="font-bold my-5">{`${product.price} GEL`}</span>
+                <p className="mt-[18px] text-sm">{product.title}</p>
+                <span className="font-bold my-5">{`${product.price}₾`}</span>
               </div>
             );
           })}
@@ -81,10 +95,10 @@ export default function Products() {
 
         <div className="flex items-center gap-4 mb-4  mt-20">
           <Image src="/icons/vip.svg" alt="#" width={30} height={36} />
-          <h2 className="font-bold">SUPER VIP</h2>
+          <h2 className="font-bold">VIP</h2>
         </div>
 
-        <section className="flex gap-8">
+        <section className="flex flex-wrap justify-between">
         {vip.map((product) => {
             return (
               <div
@@ -103,8 +117,8 @@ export default function Products() {
                   />
                 </div>
 
-                <p className="mt-[18px]">{product.title}</p>
-                <span className="font-bold my-5">{`${product.price} GEL`}</span>
+                <p className="mt-[18px] text-sm">{product.title}</p>
+                <span className="font-bold my-5">{`${product.price}₾`}</span>
               </div>
             );
           })}

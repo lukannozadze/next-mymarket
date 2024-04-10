@@ -2,6 +2,12 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
 import GeneralStateProvider from "@/context/GeneralStateProvider";
+import localFont from "next/font/local";
+
+const myFont = localFont({
+  src: "../../fonts/TBCXMedium.ttf",
+  fallback: ["sans-serif"],
+});
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -21,7 +27,7 @@ export default function LocaleLayout({
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
      </head>
       
-      <body>
+      <body className={myFont.className}>
         <GeneralStateProvider>
           {children}
           <Toaster />
