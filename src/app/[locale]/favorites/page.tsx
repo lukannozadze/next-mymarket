@@ -1,42 +1,21 @@
 'use client'
-export const dynamicParams = false;
 
-import data from "../../../../public/data/data.json";
-import Image from "next/image";
 import Wrapper from "@/components/ui/wrapper";
-import { useFavoritesProvider } from "@/context/FavoritesProvider";
-import { Bicycle, Laptop, Mobile } from "@/service/types";
-
-// export async function generateStaticParams() {
-//   return data.map((category) => ({
-//     category: category.id,
-//   }));
-// }
-
-export default function Page({ params }: { params: { category: string } }) {
-  const { category } = params;
-  const [filterByCategory] = data.filter((item) => item.id === category);
-  const {favorites,setFavorites} = useFavoritesProvider();
-  
- console.log(favorites);
-
+import { useFavoritesProvider } from "@/context/FavoritesProvider"
+import { Laptop,Mobile,Bicycle } from "@/service/types";
+import Image from 'next/image'
+export default function Page() {
+    const {favorites,setFavorites} = useFavoritesProvider();
+    
  const favoriteClickHandler = (product: Laptop | Mobile | Bicycle) => {
-  const isProductInFavorites = favorites.find((item) => item.id === product.id);
-
-  if (isProductInFavorites) {
-      const updatedFavorites = favorites.filter((item) => item.id !== product.id);
-      setFavorites([...updatedFavorites]);
-  } else {
-      setFavorites([...favorites, product]);
+        const updatedFavorites = favorites.filter((item) => item.id !== product.id);
+        setFavorites([...updatedFavorites]);
   }
-}
-
   return (
-    <>
-      <div className="py-8 w-full flex items-center justify-center bg-[#f1f3f6] mx-auto">
-        <div className="w-[1440px] px-6">
-          <section className="flex justify-between gap-8 flex-wrap">
-            {filterByCategory.items.map((product) => {
+    <div className="py-8 w-full flex items-center justify-center bg-[#f1f3f6] mx-auto">
+    <div className="w-[1440px] px-6">
+     <section className="flex  gap-8 flex-wrap">
+        {favorites.map((product) => {
               return (
                 <div
                   key={product.id}
@@ -66,11 +45,11 @@ export default function Page({ params }: { params: { category: string } }) {
                       Private Person
                     </span>
                   </div>
-                  <p className="mt-[18px] w-[210px] mb-5 text-[15px]">{product.title}</p>
+                  <p className="mt-[18px] mb-5">{product.title}</p>
                   <Wrapper />
                   <div className="flex items-center justify-between my-3">
                     <span className="font-bold ">{`${product.price} GEL`}</span>
-                    <div onClick={()=>{favoriteClickHandler(product)}} className="w-8 h-8 bg-gray-200 rounded-lg hover:bg-[#ffc107] flex items-center justify-center">
+                    <div onClick={()=>favoriteClickHandler(product)} className="w-8 h-8 bg-gray-200 rounded-lg flex items-center justify-center">
                       <Image
                         src="/icons/favorites-icon.svg"
                         alt="add favorite"
@@ -82,9 +61,8 @@ export default function Page({ params }: { params: { category: string } }) {
                 </div>
               );
             })}
-          </section>
-        </div>
-      </div>
-    </>
-  );
+     </section>
+     </div>
+     </div>
+  )
 }
