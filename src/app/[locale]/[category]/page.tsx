@@ -6,6 +6,7 @@ import Image from "next/image";
 import Wrapper from "@/components/ui/wrapper";
 import { useFavoritesProvider } from "@/context/FavoritesProvider";
 import { Bicycle, Laptop, Mobile } from "@/service/types";
+import { useCartProvider } from "@/context/CartProvider";
 
 // export async function generateStaticParams() {
 //   return data.map((category) => ({
@@ -17,17 +18,27 @@ export default function Page({ params }: { params: { category: string } }) {
   const { category } = params;
   const [filterByCategory] = data.filter((item) => item.id === category);
   const {favorites,setFavorites} = useFavoritesProvider();
+  const {cartItems,setCartItems} = useCartProvider();
   
  console.log(favorites);
 
  const favoriteClickHandler = (product: Laptop | Mobile | Bicycle) => {
   const isProductInFavorites = favorites.find((item) => item.id === product.id);
-
   if (isProductInFavorites) {
       const updatedFavorites = favorites.filter((item) => item.id !== product.id);
       setFavorites([...updatedFavorites]);
   } else {
       setFavorites([...favorites, product]);
+  }
+}
+
+const cartClickHandler = (product: Laptop | Mobile | Bicycle) => {
+  const isProductInCart = cartItems.find((item) => item.id === product.id);
+  if (isProductInCart) {
+      const updatedCart = cartItems.filter((item) => item.id !== product.id);
+      setCartItems([...updatedCart]);
+  } else {
+    setCartItems([...cartItems, product]);
   }
 }
 
@@ -70,6 +81,7 @@ export default function Page({ params }: { params: { category: string } }) {
                   <Wrapper />
                   <div className="flex items-center justify-between my-3">
                     <span className="font-bold ">{`${product.price} GEL`}</span>
+                    <div className="flex gap-2">
                     <div onClick={()=>{favoriteClickHandler(product)}} className="w-8 h-8 bg-gray-200 rounded-lg hover:bg-[#ffc107] flex items-center justify-center">
                       <Image
                         src="/icons/favorites-icon.svg"
@@ -77,6 +89,15 @@ export default function Page({ params }: { params: { category: string } }) {
                         width={16}
                         height={16}
                       />
+                    </div>
+                    <div onClick={()=>{cartClickHandler(product)}} className="w-8 h-8 bg-gray-200 rounded-lg hover:bg-[#ffc107] flex items-center justify-center">
+                      <Image
+                        src="/icons/cart-icon2.svg"
+                        alt="add favorite"
+                        width={16}
+                        height={16}
+                      />
+                    </div>
                     </div>
                   </div>
                 </div>
