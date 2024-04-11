@@ -3,6 +3,7 @@ import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
 import GeneralStateProvider from "@/context/GeneralStateProvider";
 import localFont from "next/font/local";
+import FavoritesProvider from "@/context/FavoritesProvider";
 
 const myFont = localFont({
   src: "../../fonts/TBCXMedium.ttf",
@@ -29,7 +30,9 @@ export default function LocaleLayout({
       
       <body className={myFont.className}>
         <GeneralStateProvider>
+        <FavoritesProvider>
           {children}
+        </FavoritesProvider>
           <Toaster />
         </GeneralStateProvider>
       </body>

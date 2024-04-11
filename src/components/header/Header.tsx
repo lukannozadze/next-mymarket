@@ -6,6 +6,9 @@ import HamburgerIcon from "./HamburgerIcon";
 import Wrapper from "../ui/wrapper";
 import readUserSession from "@/lib/actions";
 import SignOutButton from "../ui/SignOutButton";
+import Link from "next/link";
+import { useLocale } from "next-intl";
+import FavoriteButton from "./FavoriteButton";
 
 
 type Props = {
@@ -14,6 +17,7 @@ type Props = {
 }
 export default async function Header({inputClass,classnames}:Props) {
   const {data} = await readUserSession();
+  const localeActive = useLocale();
   console.log('session' + data.session);
   return (
     <header className=  {` py-2 shadow-lg md:shadow-none ${classnames} `}>
@@ -32,13 +36,7 @@ export default async function Header({inputClass,classnames}:Props) {
               width={24}
               height={24}
             />
-            <Image
-              className="hidden md:block"
-              src="/icons/favorites-icon.svg"
-              alt="favorites"
-              width={24}
-              height={24}
-            />
+            <FavoriteButton/>
             <Image
               className="hidden md:block"
               src="/icons/cart-icon.svg"
