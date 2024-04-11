@@ -1,22 +1,23 @@
 import Image from "next/image";
-
 import AddButton from "@/components/ui/AddButton";
 import SignInButton from "../ui/SignInButton";
 import SearchForm from "./SearchForm";
 import HamburgerIcon from "./HamburgerIcon";
-import { ReactNode } from "react";
 import Wrapper from "../ui/wrapper";
-import Link from "next/link";
+import readUserSession from "@/lib/actions";
+import SignOutButton from "../ui/SignOutButton";
+
 
 type Props = {
   classnames?:string,
   inputClass?:string
 }
-
-export default function Header({inputClass,classnames}:Props) {
+export default async function Header({inputClass,classnames}:Props) {
+  const {data} = await readUserSession();
+  console.log('session' + data.session);
   return (
-    <header className=  {` py-2 shadow-lg md:shadow-none ${classnames}`}>
-      <div className="mx-auto flex justify-between items-center max-w-[1440px] px-6">
+    <header className=  {` py-2 shadow-lg md:shadow-none ${classnames} `}>
+      <div className="mx-auto flex justify-between items-center  max-w-[1440px] px-6 ">
         <div className="flex gap-5 max-w-96">
           <Image src="/logo.svg" alt="logo" width={150} height={41} />
           <SearchForm inputClass={inputClass} />
@@ -46,7 +47,8 @@ export default function Header({inputClass,classnames}:Props) {
               height={24}
             />
           </div>
-          <SignInButton />
+         { !data.session && <SignInButton />}
+         {data.session && <SignOutButton/>}
           <Image
             className="hidden lg:block"
             src="/icons/tnet-icon.svg"
