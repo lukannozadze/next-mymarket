@@ -19,7 +19,7 @@ export default function Page({ params }: { params: { category: string } }) {
     <>
       <div className="py-8 w-full flex items-center justify-center bg-[#f1f3f6] mx-auto">
         <div className="w-[1440px] px-6">
-          <section className="flex gap-8 flex-wrap">
+          <section className="flex justify-between gap-8 flex-wrap">
             {filterByCategory.items.map((product) => {
               return (
                 <div

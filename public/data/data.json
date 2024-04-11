@@ -177,18 +177,6 @@
     ]
   },
   {
-    "id": "dogs",
-    "name": "ძაღლი",
-    "image": "/images/categories/category-dog.jpg",
-    "items": []
-  },
-  {
-    "id": "consoles",
-    "name": "სათამაშო კონსოლი",
-    "image": "/images/categories/category-console.jpg",
-    "items": []
-  },
-  {
     "id": "smartphones",
     "name": "მობილური ტელეფონი",
     "image": "/images/categories/category-smartphone.jpg",
@@ -307,25 +295,7 @@
     ]
   },
   {
-    "id": "watches",
-    "name": "საათები",
-    "image": "/images/categories/category-watch.jpg",
-    "items": []
-  },
-  {
-    "id": "laptops2",
-    "name": "საწოლი",
-    "image": "/images/categories/category-bed.jpg",
-    "items": []
-  },
-  {
-    "id": "laptops3",
-    "name": "ფეხსაცმელი",
-    "image": "/images/categories/category-boots.jpg",
-    "items": []
-  },
-  {
-    "id": "laptops4",
+    "id": "bicycles",
     "name": "ველოსიპედი",
     "image": "/images/categories/category-bicycle.jpg",
     "items": [
@@ -441,5 +411,35 @@
       }
       
     ]
+  },
+  {
+    "id": "dogs",
+    "name": "ძაღლი",
+    "image": "/images/categories/category-dog.jpg",
+    "items": []
+  },
+  {
+    "id": "consoles",
+    "name": "სათამაშო კონსოლი",
+    "image": "/images/categories/category-console.jpg",
+    "items": []
+  },
+  {
+    "id": "watches",
+    "name": "საათები",
+    "image": "/images/categories/category-watch.jpg",
+    "items": []
+  },
+  {
+    "id": "bed",
+    "name": "საწოლი",
+    "image": "/images/categories/category-bed.jpg",
+    "items": []
+  },
+  {
+    "id": "boots",
+    "name": "ფეხსაცმელი",
+    "image": "/images/categories/category-boots.jpg",
+    "items": []
   }
 ]
