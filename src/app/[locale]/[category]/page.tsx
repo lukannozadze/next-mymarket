@@ -80,7 +80,7 @@ const cartClickHandler = (product: Laptop | Mobile | Bicycle) => {
                   <p className="mt-[18px] w-[210px] mb-5 text-[15px]">{product.title}</p>
                   <Wrapper />
                   <div className="flex items-center justify-between my-3">
-                    <span className="font-bold ">{`${product.price} GEL`}</span>
+                    <span className="font-bold ">{`${product.price}₾`}</span>
                     <div className="flex gap-2">
                     <div onClick={()=>{favoriteClickHandler(product)}} className="w-8 h-8 bg-gray-200 rounded-lg hover:bg-[#ffc107] flex items-center justify-center">
                       <Image

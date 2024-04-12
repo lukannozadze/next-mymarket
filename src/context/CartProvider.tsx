@@ -7,17 +7,24 @@ type Props = {
 }
 type ContextType= {
   cartItems:(Laptop | Mobile | Bicycle)[],
-  setCartItems:Dispatch<SetStateAction<(Laptop | Mobile | Bicycle)[]>>
+  setCartItems:Dispatch<SetStateAction<(Laptop | Mobile | Bicycle)[]>>,
+  setTotal:Dispatch<SetStateAction<number>>
+  total:number
 }
 const Context = createContext<ContextType>({
   cartItems:[],
-  setCartItems:()=>{}
+  setCartItems:()=>{},
+  setTotal:()=>{},
+  total:0
 })
 export default function CartProvider({children}:Props) {
   const [cartItems,setCartItems] = useState<(Laptop | Mobile | Bicycle)[]>([])
+  const [total,setTotal] = useState(0);
   const ContextValue:ContextType = {
     cartItems,
-    setCartItems
+    setCartItems,
+    setTotal,
+    total
   }
   return <Context.Provider value={ContextValue}>{children}</Context.Provider>
 }
