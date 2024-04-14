@@ -11,6 +11,8 @@ import LanguageSelect from "../shared/LanguageSelect";
 import { Suspense, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { toast } from "@/components/ui/use-toast";
+import Loader from "../shared/Loader";
+import { useLocale } from "next-intl";
 const formSchema = z
   .object({
     password: z.string().min(6, {
@@ -23,10 +25,22 @@ const formSchema = z
     path: ["confirm"],
   });
 
-export default function ResetPassword({logoPath,title,password,repeat,done}:{logoPath:string,title:string,password:string,repeat:string,done:string}) {
+export default function ResetPassword({
+  logoPath,
+  title,
+  password,
+  repeat,
+  done,
+}: {
+  logoPath: string;
+  title: string;
+  password: string;
+  repeat: string;
+  done: string;
+}) {
   const [passType, setPassType] = useState("password");
   const [confirmType, setConfirmType] = useState("password");
-
+  const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
 
   const searchParams = useSearchParams();
@@ -34,7 +48,7 @@ export default function ResetPassword({logoPath,title,password,repeat,done}:{log
   const code = searchParams.get("code");
   const error = searchParams.get("error");
   const errorDescription = searchParams.get("error_description");
-
+  const localeActive = useLocale();
   if (!code) {
     router.back();
   }
@@ -78,28 +92,37 @@ export default function ResetPassword({logoPath,title,password,repeat,done}:{log
   });
 
   async function onSubmit(data: z.infer<typeof formSchema>) {
+    setIsLoading(true);
     const code = searchParams.get("code");
-    const result = await changePassword(data, code);
-    //console.log(result);
-    const error = JSON.parse(result);
-    if (error) {
-      toast({
-        variant: "destructive",
-        title: "Error!",
-        description: error.message,
-      });
-    } else {
-      setTimeout(() => {
-        router.push("/login");
-      }, 1500);
-      toast({
-        variant: "default",
-        title: "Success!",
-        description: "Password successfully changed!",
-      });
+    try {
+      const result = await changePassword(data, code);
+      //console.log(result);
+      const error = JSON.parse(result);
+      if (error) {
+        toast({
+          variant: "destructive",
+          title: "Error!",
+          description: error.message,
+        });
+      } else {
+        setTimeout(() => {
+          router.push(`/${localeActive}/login`);
+        }, 1500);
+        toast({
+          variant: "default",
+          title: "Success!",
+          description: "Password successfully changed!",
+        });
+      }
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setIsLoading(false);
     }
-
-    console.log(data);
+  }
+  
+  if(isLoading){
+    return <Loader/>
   }
 
   return (

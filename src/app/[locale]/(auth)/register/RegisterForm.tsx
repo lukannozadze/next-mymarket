@@ -14,6 +14,7 @@ import { GenderRadio } from "./GenderRadio";
 import { log } from "console";
 import ConfirmEmail from "./ConfirmEmail";
 import { useLocale } from "next-intl";
+import Loader from "../shared/Loader";
 
 const formSchema = z
   .object({
@@ -48,7 +49,6 @@ const formSchema = z
       .min(9, {
         message: "Wrong format number",
       }),
-    rules: z.boolean().default(false).optional(),
   })
   .refine((data) => data.confirm === data.password, {
     message: "Passwords did not match",
@@ -99,7 +99,7 @@ export default function RegisterForm({
   const [passType, setPassType] = useState("password");
   const [confirmType, setConfirmType] = useState("password");
   const [regSuccess, setRegSuccess] = useState(false);
-  const router = useRouter();
+  const [isLoading,setIsLoading] = useState(false);
   const localeActive = useLocale();
 
   const showPassClickHandler = () => {
@@ -138,19 +138,26 @@ export default function RegisterForm({
   });
 
   async function onSubmit(data: z.infer<typeof formSchema>) {
-    const result = await signUpWithEmailAndPassword(data);
-
-    const { error } = JSON.parse(result);
-    if (error) {
-      console.log("error", error);
-    } else {
-      setRegSuccess(true);
+    setIsLoading(true);
+    try{
+      const result = await signUpWithEmailAndPassword(data);
+      const { error } = JSON.parse(result);
+      if (!error) {
+        setRegSuccess(true);
+      }
+    }catch(error){
+        console.log(error);
+    }finally{
+       setIsLoading(false);
     }
 
-    console.log(data);
   }
   if (regSuccess) {
     return <ConfirmEmail text={confirmEmailText} />;
+  }
+
+  if(isLoading){
+    return <Loader/>
   }
 
   return (
@@ -320,7 +327,7 @@ export default function RegisterForm({
               )}
             </div>
             <div className="w-full flex items-center gap-3">
-              <Checkbox {...register("rules")} className="w-5 h-5" />
+              <Checkbox className="w-5 h-5" />
               <span>
                 {termsStart}{" "}
                 <Link className="text-[#3C74FF]" href="/">
