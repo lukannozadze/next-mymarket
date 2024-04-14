@@ -1,42 +1,40 @@
 import Link from "next/link";
-import Image from "next/image";
-import Wrapper from "../ui/wrapper";
 import SocialMedia from "./ui/SocialMedia";
 const navigationArr = [
-  "List an item",
-  "Buy Online",
-  "Used Products",
-  "Protect from phishing",
-  "Shops",
-  "Open Shop",
+  "განცხადების დამატება",
+  "იყიდე ონლაინ",
+  "მეორადი ნივთები",
+  "ფიშინგისგან თავდაცვა",
+  "მაღაზიები",
+  "გახსენი მაღაზია",
   "Trade In",
 ];
 const helpArr = [
-  "Frequently Asked Questions",
-  "Send Message",
+  "ხშირად დასმული კითხვები",
+  "მესიჯის მიწერა",
   "(032) 280 00 35",
   "info@mymarket.ge",
 ];
 const categoriesArrFirst = [
-  "Services",
-  "Rent",
-  "Home and garden",
-  "Home Technics",
-  "Technic",
-  "Weapons, Hunting, Fishing",
+  "მომსახურება",
+  "გაქირავება",
+  "სახლი და ბაღი",
+  "საოჯახო ტექნიკა",
+  "ტექნიკა",
+  "ნადირობა და თევზაობა",
 ];
 const categoriesArrSecond = [
-  "Music",
-  "Children's products",
-  "Beauty and Fashion",
-  "Repair and building materials",
-  "Agricultural",
-  "Animals",
+  "მუსიკა",
+  "საბავშვო",
+  "სილამაზე და მოდა",
+  "მშენებლობა და რემონტი",
+  "სოფლის მეურნეობა",
+  "ცხოველები",
 ];
 const categoriesArrThird = [
-  "Sport, Tourism, Recreation",
-  "Business and Industrial",
-  "Books, Stationery, Art",
+  "სპორტი და დასვენება",
+  "ბიზნესი და დანადგარები",
+  "წიგნები და კანცელარია",
 ];
 export default function Navigation() {
   return (

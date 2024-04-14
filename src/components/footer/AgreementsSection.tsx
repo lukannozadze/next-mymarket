@@ -4,13 +4,13 @@ export default function AgreementsSection() {
     <section className="flex justify-between items-center w-full pb-5 ">
       <div className="flex flex-col md:flex-row gap-5">
         <span className="text-xs text-gray-400 underline hover:text-black cursor-pointer">
-          Terms and Conditions
+          წესები და პირობები
         </span>
         <span className="text-xs text-gray-400 underline hover:text-black cursor-pointer">
-          Confidentiality Policy
+          კონფიდენციალურობის პოლიტიკა
         </span>
         <span className="text-xs text-gray-400 underline hover:text-black cursor-pointer">
-          Return Policy
+          დაბრუნების პოლიტიკა
         </span>
       </div>
       <Link href="https://www.top.ge/index.php?h=11654#11654">

@@ -18,7 +18,7 @@ export default function Footer() {
       <div className="w-full px-4 pb-8 flex justify-center pt-6 ">
         <div>
           <span className="text-xs text-gray-400">
-            © 2024 All rights reserved
+            © 2024 ყველა უფლება დაცულია
           </span>
         </div>
       </div>

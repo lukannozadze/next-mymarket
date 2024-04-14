@@ -8,7 +8,7 @@ export default function AppDownloadSection() {
         <Image src="/appstore.svg" alt="appstore" width={107} height={33} />
       </div>
       <span className="text-xs text-gray-400">
-        Download app and get latest features
+      გადმოწერე აპლიკაცია და მიიღე მუდმივად განახლებული ინფორმაცია მარტივად
       </span>
       <div className="md:hidden mt-4">
       <SocialMedia/>

@@ -1,46 +1,76 @@
-'use client'
-export const dynamicParams = false;
-
+"use client";
 import data from "../../../../public/data/data.json";
 import Image from "next/image";
 import Wrapper from "@/components/ui/wrapper";
 import { useFavoritesProvider } from "@/context/FavoritesProvider";
 import { Bicycle, Laptop, Mobile } from "@/service/types";
 import { useCartProvider } from "@/context/CartProvider";
-
-// export async function generateStaticParams() {
-//   return data.map((category) => ({
-//     category: category.id,
-//   }));
-// }
+import { useEffect, useState } from "react";
 
 export default function Page({ params }: { params: { category: string } }) {
   const { category } = params;
+  const [activeFavArr, setActiveFavArr] = useState<number[]>([]);
+  const [activeCartArr, setActiveCartArr] = useState<number[]>([]);
+  const { favorites, setFavorites } = useFavoritesProvider();
+  const { cartItems, setCartItems } = useCartProvider();
   const [filterByCategory] = data.filter((item) => item.id === category);
-  const {favorites,setFavorites} = useFavoritesProvider();
-  const {cartItems,setCartItems} = useCartProvider();
-  
- console.log(favorites);
 
- const favoriteClickHandler = (product: Laptop | Mobile | Bicycle) => {
-  const isProductInFavorites = favorites.find((item) => item.id === product.id);
-  if (isProductInFavorites) {
-      const updatedFavorites = favorites.filter((item) => item.id !== product.id);
+  useEffect(() => {
+    const updatedActiveFavArr: number[] = [];
+    favorites.forEach((item) => {
+      updatedActiveFavArr.push(item.id);
+    });
+
+    const updatedActiveCartArr: number[] = [];
+    cartItems.forEach((item) => {
+      updatedActiveCartArr.push(item.id);
+    });
+    setActiveFavArr([...updatedActiveFavArr]);
+    setActiveCartArr([...updatedActiveCartArr]);
+  }, []);
+
+  const favoriteClickHandler = (product: Laptop | Mobile | Bicycle) => {
+    const isProductInFavorites = favorites.find(
+      (item) => item.id === product.id
+    );
+
+    if (isProductInFavorites) {
+      const updatedFavorites = favorites.filter(
+        (item) => item.id !== product.id
+      );
+      const updatedActiveFavArr: number[] = [];
+      favorites.forEach((item) => {
+        if (item.id !== product.id) {
+          updatedActiveFavArr.push(item.id);
+        }
+      });
+
       setFavorites([...updatedFavorites]);
-  } else {
+      setActiveFavArr(updatedActiveFavArr);
+    } else {
       setFavorites([...favorites, product]);
-  }
-}
+      setActiveFavArr([...activeFavArr, product.id]);
+    }
+  };
 
-const cartClickHandler = (product: Laptop | Mobile | Bicycle) => {
-  const isProductInCart = cartItems.find((item) => item.id === product.id);
-  if (isProductInCart) {
+  const cartClickHandler = (product: Laptop | Mobile | Bicycle) => {
+    const isProductInCart = cartItems.find((item) => item.id === product.id);
+    if (isProductInCart) {
       const updatedCart = cartItems.filter((item) => item.id !== product.id);
+
+      const updatedActiveCartArr: number[] = [];
+      favorites.forEach((item) => {
+        if (item.id !== product.id) {
+          updatedActiveCartArr.push(item.id);
+        }
+      });
+      setActiveCartArr(updatedActiveCartArr);
       setCartItems([...updatedCart]);
-  } else {
-    setCartItems([...cartItems, product]);
-  }
-}
+    } else {
+      setActiveCartArr([...activeCartArr, product.id]);
+      setCartItems([...cartItems, product]);
+    }
+  };
 
   return (
     <>
@@ -77,27 +107,47 @@ const cartClickHandler = (product: Laptop | Mobile | Bicycle) => {
                       Private Person
                     </span>
                   </div>
-                  <p className="mt-[18px] w-[210px] mb-5 text-[15px]">{product.title}</p>
+                  <p className="mt-[18px] w-[210px] mb-5 text-[15px]">
+                    {product.title}
+                  </p>
                   <Wrapper />
                   <div className="flex items-center justify-between my-3">
                     <span className="font-bold ">{`${product.price}₾`}</span>
                     <div className="flex gap-2">
-                    <div onClick={()=>{favoriteClickHandler(product)}} className="w-8 h-8 bg-gray-200 rounded-lg hover:bg-[#ffc107] flex items-center justify-center">
-                      <Image
-                        src="/icons/favorites-icon.svg"
-                        alt="add favorite"
-                        width={16}
-                        height={16}
-                      />
-                    </div>
-                    <div onClick={()=>{cartClickHandler(product)}} className="w-8 h-8 bg-gray-200 rounded-lg hover:bg-[#ffc107] flex items-center justify-center">
-                      <Image
-                        src="/icons/cart-icon2.svg"
-                        alt="add favorite"
-                        width={16}
-                        height={16}
-                      />
-                    </div>
+                      <div
+                        onClick={() => {
+                          favoriteClickHandler(product);
+                        }}
+                        className={`${
+                          activeFavArr.includes(product.id)
+                            ? "bg-[#ffc107]"
+                            : "bg-gray-200"
+                        } w-8 h-8  rounded-lg hover:bg-[#ffc107] flex items-center justify-center`}
+                      >
+                        <Image
+                          src="/icons/favorites-icon.svg"
+                          alt="add favorite"
+                          width={16}
+                          height={16}
+                        />
+                      </div>
+                      <div
+                        onClick={() => {
+                          cartClickHandler(product);
+                        }}
+                        className={`${
+                          activeCartArr.includes(product.id)
+                            ? "bg-[#ffc107]"
+                            : "bg-gray-200"
+                        } w-8 h-8 rounded-lg hover:bg-[#ffc107] flex items-center justify-center`}
+                      >
+                        <Image
+                          src="/icons/cart-icon2.svg"
+                          alt="add favorite"
+                          width={16}
+                          height={16}
+                        />
+                      </div>
                     </div>
                   </div>
                 </div>

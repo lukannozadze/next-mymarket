@@ -7,36 +7,36 @@ import {
 import Link from "next/link";
 
 const navigationArr = [
-  "List an item",
-  "Buy Online",
-  "Used Products",
-  "Protect from phishing",
-  "Shops",
-  "Open Shop",
+  "განცხადების დამატება",
+  "იყიდე ონლაინ",
+  "მეორადი ნივთები",
+  "ფიშინგისგან თავდაცვა",
+  "მაღაზიები",
+  "გახსენი მაღაზია",
   "Trade In",
 ];
 const helpArr = [
-  "Frequently Asked Questions",
-  "Send Message",
+  "ხშირად დასმული კითხვები",
+  "მესიჯის მიწერა",
   "(032) 280 00 35",
   "info@mymarket.ge",
 ];
-const categoriesArr= [
-  "Services",
-  "Rent",
-  "Home and garden",
-  "Home Technics",
-  "Technic",
-  "Weapons, Hunting, Fishing",
-  "Music",
-  "Children's products",
-  "Beauty and Fashion",
-  "Repair and building materials",
-  "Agricultural",
-  "Animals",
-  "Sport, Tourism, Recreation",
-  "Business and Industrial",
-  "Books, Stationery, Art"
+const categoriesArr = [
+  "მომსახურება",
+  "გაქირავება",
+  "სახლი და ბაღი",
+  "საოჯახო ტექნიკა",
+  "ტექნიკა",
+  "ნადირობა და თევზაობა",
+  "მუსიკა",
+  "საბავშვო",
+  "სილამაზე და მოდა",
+  "მშენებლობა და რემონტი",
+  "სოფლის მეურნეობა",
+  "ცხოველები",
+  "სპორტი და დასვენება",
+  "ბიზნესი და დანადგარები",
+  "წიგნები და კანცელარია",
 ];
 
 
