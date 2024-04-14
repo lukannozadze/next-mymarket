@@ -9,6 +9,7 @@ import SignOutButton from "../ui/SignOutButton";
 import Link from "next/link";
 import { useLocale } from "next-intl";
 import FavoriteButton from "./FavoriteButton";
+import CartButton from "./CartButton";
 
 
 type Props = {
@@ -37,13 +38,7 @@ export default async function Header({inputClass,classnames}:Props) {
               height={24}
             />
             <FavoriteButton/>
-            <Image
-              className="hidden md:block"
-              src="/icons/cart-icon.svg"
-              alt="cart"
-              width={24}
-              height={24}
-            />
+            <CartButton/>
           </div>
          { !data.session && <SignInButton />}
          {data.session && <SignOutButton/>}
