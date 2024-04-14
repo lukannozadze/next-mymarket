@@ -5,7 +5,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import Image from "next/image";
 import { Input } from "@/components/ui/input";
 import Link from "next/link";
-import { requestPasswordReset } from "../actions";
+import { RequestPasswordReset } from "../actions";
 
 import LanguageSelect from "../shared/LanguageSelect";
 import { useState } from "react";
@@ -39,7 +39,7 @@ export default function RequestPassword({
   });
 
   async function onSubmit(data: z.infer<typeof formSchema>) {
-    const error = await requestPasswordReset(data);
+    const error = await RequestPasswordReset(data);
     console.log(error);
     if (error === "null") {
       setIsSuccess(true);

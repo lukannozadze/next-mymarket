@@ -31,7 +31,7 @@ export async function signInWithEmailAndPassword(data: {
   return JSON.stringify(result);
 }
 
-export async function signOut() {
+export async function SignOut() {
   const localeActive = useLocale();
   const supabase = await createSupabaseServerClient();
   await supabase.auth.signOut();
@@ -40,7 +40,7 @@ export async function signOut() {
 
 
 
-export async function requestPasswordReset(data: { email: string }) {
+export async function RequestPasswordReset(data: { email: string }) {
   const localeActive = useLocale();
   const origin = headers().get("origin");
   const supabase = await createSupabaseServerClient();

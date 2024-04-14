@@ -1,5 +1,4 @@
 import Header from "@/components/header/Header";
-import { signOut } from "./(auth)/actions";
 import readUserSession from "@/lib/actions";
 import { redirect } from "next/navigation";
 import Footer from "@/components/footer/Footer";
@@ -17,7 +16,7 @@ export default function Home() {
       <HamburgerMenu />
       <Header inputClass="hidden" classnames="sticky top-0 z-40 bg-white" />
       <Services />
-      <main className="min-h-screen w-full px-6 z-10 flex flex-col jutify-center">
+      <main className="min-h-screen w-full px-6 z-10 flex flex-col">
           <Categories />
           <Products />
       </main>
