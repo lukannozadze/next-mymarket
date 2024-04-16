@@ -10,6 +10,7 @@ import { RequestPasswordReset } from "../actions";
 import LanguageSelect from "../shared/LanguageSelect";
 import { useState } from "react";
 import RequestNotification from "./RequestNotification";
+import Loader from "../shared/Loader";
 
 const formSchema = z.object({
   email: z.string().email({ message: "Enter the Email" }).min(1),
@@ -29,7 +30,7 @@ export default function RequestPassword({
   notification:string
 }) {
   const [isSuccess, setIsSuccess] = useState(false);
-
+  const [isLoading,setIsLoading] = useState(false);
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
 
@@ -39,16 +40,27 @@ export default function RequestPassword({
   });
 
   async function onSubmit(data: z.infer<typeof formSchema>) {
-    const error = await RequestPasswordReset(data);
-    console.log(error);
-    if (error === "null") {
-      setIsSuccess(true);
+    setIsLoading(true);
+    try{
+      const error = await RequestPasswordReset(data);
+      if (error === "null") {
+        setIsSuccess(true);
+      }
+    }catch(error){
+      console.log(error);
+    }finally{
+      setIsLoading(false);
     }
   }
-  console.log(isSuccess);
+  
+  if(isLoading){
+    return <Loader/>
+  }
+
   if (isSuccess) {
     return <RequestNotification notification={notification} />;
   }
+
 
   return (
     <div className="w-full flex items-center justify-center">
