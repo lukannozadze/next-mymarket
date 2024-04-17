@@ -6,6 +6,7 @@ import { useFavoritesProvider } from "@/context/FavoritesProvider";
 import { Bicycle, Laptop, Mobile } from "@/service/types";
 import { useCartProvider } from "@/context/CartProvider";
 import { useEffect, useState } from "react";
+import Link from "next/link";
 
 export default function Page({ params }: { params: { category: string } }) {
   const { category } = params;
@@ -79,7 +80,7 @@ export default function Page({ params }: { params: { category: string } }) {
           <section className="flex justify-between gap-8 flex-wrap">
             {filterByCategory.items.map((product) => {
               return (
-                <div
+                <Link href={`${category}/${product.id}`}
                   key={product.id}
                   className=" px-4 pt-3 rounded-xl pb-2 cursor-pointer bg-white"
                 >
@@ -150,7 +151,7 @@ export default function Page({ params }: { params: { category: string } }) {
                       </div>
                     </div>
                   </div>
-                </div>
+                </Link>
               );
             })}
           </section>
