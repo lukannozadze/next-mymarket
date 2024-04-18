@@ -10,6 +10,7 @@ import Link from "next/link";
 import { useLocale } from "next-intl";
 import FavoriteButton from "./FavoriteButton";
 import CartButton from "./CartButton";
+import Logo from "./Logo";
 
 
 type Props = {
@@ -24,7 +25,7 @@ export default async function Header({inputClass,classnames}:Props) {
     <header className=  {` py-2 shadow-lg md:shadow-none ${classnames} `}>
       <div className="mx-auto flex justify-between items-center  max-w-[1440px] px-6 ">
         <div className="flex gap-5 max-w-96">
-          <Image src="/logo.svg" alt="logo" width={150} height={41} />
+          <Logo/>
           <SearchForm inputClass={inputClass} />
         </div>
         <div className="flex gap-4">

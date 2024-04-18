@@ -7,7 +7,8 @@ export type Mobile = {
         memory:string,
         title:string,
         price:string,
-        status:string
+        status:string,
+        category:string
 }
 
 export type Laptop ={
@@ -26,6 +27,7 @@ export type Laptop ={
     title: string;
     price: string;
     status: string;
+    category:string
 }
 
 export type Bicycle = {
@@ -37,5 +39,6 @@ export type Bicycle = {
   flash:string,
   title:string,
   price:string,
-  status:string
+  status:string,
+  category:string
 }

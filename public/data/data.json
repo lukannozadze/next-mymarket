@@ -19,7 +19,8 @@
         "screen_size": "15.6 Inch",
         "title": "კარგ მდგომარეობაში",
         "price": "800",
-        "status": "none"
+        "status": "none",
+        "category":"laptop"
       },
       {
         "id": 2,
@@ -36,7 +37,8 @@
         "screen_size": "15.6 Inch",
         "title": "Notebook HP",
         "price": "1800",
-        "status": "none"
+        "status": "none",
+        "category":"laptop"
       },
       {
         "id": 3,
@@ -53,7 +55,8 @@
         "screen_size": "15.6 Inch",
         "title": "Notebook from America",
         "price": "2800",
-        "status": "none"
+        "status": "none",
+        "category":"laptop"
       },
       {
         "id": 4,
@@ -70,7 +73,8 @@
         "screen_size": "15.6 Inch",
         "title": "Notebook from Nigeria",
         "price": "300",
-        "status": "super vip"
+        "status": "super vip",
+        "category":"laptop"
       },
       {
         "id": 5,
@@ -87,7 +91,8 @@
         "screen_size": "15.6 Inch",
         "title": "უმაგრესი ნოუთბუქი",
         "price": "1500",
-        "status": "super vip"
+        "status": "super vip",
+        "category":"laptop"
       },
       {
         "id": 6,
@@ -104,7 +109,8 @@
         "screen_size": "15.6 Inch",
         "title": "ნოუთბუქი სომხეთიდან",
         "price": "700",
-        "status": "vip"
+        "status": "vip",
+        "category":"laptop"
       },
       {
         "id": 7,
@@ -121,7 +127,8 @@
         "screen_size": "15.6 Inch",
         "title": "ლენოვოს უახლესი ნოუთბუქი",
         "price": "2700",
-        "status": "none"
+        "status": "none",
+        "category":"laptop"
       },
       {
         "id": 8,
@@ -138,7 +145,8 @@
         "screen_size": "15.6 Inch",
         "title": "500 - მეჩქარება(დააკლდება)",
         "price": "500",
-        "status": "none"
+        "status": "none",
+        "category":"laptop"
       },
       {
         "id": 9,
@@ -155,7 +163,8 @@
         "screen_size": "15.6 Inch",
         "title": "Acer Notebook",
         "price": "3500",
-        "status": "vip+"
+        "status": "vip+",
+        "category":"laptop"
       },
       {
         "id": 10,
@@ -172,7 +181,8 @@
         "screen_size": "15.6 Inch",
         "title": "Lenovo ბოლო მოდელი",
         "price": "1500",
-        "status": "vip+"
+        "status": "vip+",
+        "category":"laptop"
       }
     ]
   },
@@ -190,7 +200,8 @@
         "memory":"256",
         "title":"მობილური ტელეფონი Apple",
         "price":"1650",
-        "status":"vip"
+        "status":"vip",
+        "category":"mobile"
       },
       {
         "id":12,
@@ -201,7 +212,8 @@
         "memory":"256",
         "title":"Motorola Edge 30 Pro 256-12gb",
         "price":"850",
-        "status":"super vip"
+        "status":"super vip",
+        "category":"mobile"
       },
       {
         "id":13,
@@ -212,7 +224,8 @@
         "memory":"12",
         "title":"Tecno Phantom X2 Pro",
         "price":"1250",
-        "status":"none"
+        "status":"none",
+        "category":"mobile"
       },
       {
         "id":14,
@@ -223,7 +236,8 @@
         "memory":"4",
         "title":"მობილური Samsung Galaxy A31",
         "price":"180",
-        "status":"super vip"
+        "status":"super vip",
+        "category":"mobile"
       },
       {
         "id":15,
@@ -234,7 +248,8 @@
         "memory":"8",
         "title":"მობილური Samsung Galaxy A31",
         "price":"1800",
-        "status":"none"
+        "status":"none",
+        "category":"mobile"
       },
       {
         "id":16,
@@ -245,7 +260,8 @@
         "memory":"4",
         "title":"Iphone 18",
         "price":"3800",
-        "status":"vip+"
+        "status":"vip+",
+        "category":"mobile"
       },
       {
         "id":17,
@@ -256,7 +272,8 @@
         "memory":"6",
         "title":"მობილური Pixel Pro",
         "price":"1350",
-        "status":"vip"
+        "status":"vip",
+        "category":"mobile"
       },
       {
         "id":18,
@@ -267,7 +284,8 @@
         "memory":"4",
         "title":"Xiaomi მეჩქარება",
         "price":"300",
-        "status":"none"
+        "status":"none",
+        "category":"mobile"
       },
       {
         "id":19,
@@ -278,7 +296,8 @@
         "memory":"12",
         "title":"Iphone 32 Pro",
         "price":"9300",
-        "status":"none"
+        "status":"none",
+        "category":"mobile"
       },
       {
         "id":20,
@@ -289,7 +308,8 @@
         "memory":"16",
         "title":"Samsung ძალიან იაფად",
         "price":"550",
-        "status":"none"
+        "status":"none",
+        "category":"mobile"
       }
 
     ]
@@ -308,7 +328,8 @@
         "flash":"არა",
         "title":"გერმანული ველოსიპედი",
         "price":"400",
-        "status":"vip"
+        "status":"vip",
+        "category":"bicycle"
       },
       {
         "id":22,
@@ -319,7 +340,8 @@
         "flash":"არა",
         "title":"GE124J-PZ2 გერმანული",
         "price":"600",
-        "status":"vip"
+        "status":"vip",
+        "category":"bicycle"
       },
       {
         "id":23,
@@ -330,7 +352,8 @@
         "flash":"არა",
         "title":"შუმერული ველოსიპედი",
         "price":"800",
-        "status":"vip+"
+        "status":"vip+",
+        "category":"bicycle"
       },
       {
         "id":24,
@@ -341,7 +364,8 @@
         "flash":"არა",
         "title":"იაფად(მეჩქარება)",
         "price":"150",
-        "status":"vip+"
+        "status":"vip+",
+        "category":"bicycle"
       },
       {
         "id":25,
@@ -352,7 +376,8 @@
         "flash":"არა",
         "title":"ძაან მაგარი ბაიკი",
         "price":"1200",
-        "status":"super vip"
+        "status":"super vip",
+        "category":"bicycle"
       },
       {
         "id":26,
@@ -363,7 +388,8 @@
         "flash":"არა",
         "title":"Super Bike G130",
         "price":"650",
-        "status":"none"
+        "status":"none",
+        "category":"bicycle"
       },
       {
         "id":27,
@@ -374,7 +400,8 @@
         "flash":"არა",
         "title":"სასწრაფოდ!!!",
         "price":"500",
-        "status":"none"
+        "status":"none",
+        "category":"bicycle"
       },
       {
         "id":28,
@@ -385,7 +412,8 @@
         "flash":"არა",
         "title":"იტალიური ველოსიპედი",
         "price":"250",
-        "status":"none"
+        "status":"none",
+        "category":"bicycle"
       },
       {
         "id":29,
@@ -396,7 +424,8 @@
         "flash":"არა",
         "title":"იყიდება!(დასაზეთია)",
         "price":"1000",
-        "status":"none"
+        "status":"none",
+        "category":"bicycle"
       },
       {
         "id":30,
@@ -407,7 +436,8 @@
         "flash":"არა",
         "title":"ორიგინალი(დააკლდება)",
         "price":"400",
-        "status":"none"
+        "status":"none",
+        "category":"bicycle"
       }
       
     ]
