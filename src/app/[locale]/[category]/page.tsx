@@ -7,6 +7,7 @@ import { Bicycle, Laptop, Mobile } from "@/service/types";
 import { useCartProvider } from "@/context/CartProvider";
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { useGeneralStateProvider } from "@/context/GeneralStateProvider";
 
 export default function Page({ params }: { params: { category: string } }) {
   const { category } = params;
@@ -14,6 +15,7 @@ export default function Page({ params }: { params: { category: string } }) {
   const [activeCartArr, setActiveCartArr] = useState<number[]>([]);
   const { favorites, setFavorites } = useFavoritesProvider();
   const { cartItems, setCartItems } = useCartProvider();
+  const {categoryData} = useGeneralStateProvider();
   const [filterByCategory] = data.filter((item) => item.id === category);
 
   useEffect(() => {
@@ -29,7 +31,7 @@ export default function Page({ params }: { params: { category: string } }) {
     setActiveFavArr([...updatedActiveFavArr]);
     setActiveCartArr([...updatedActiveCartArr]);
   }, []);
-
+  
   const favoriteClickHandler = (product: Laptop | Mobile | Bicycle) => {
     const isProductInFavorites = favorites.find(
       (item) => item.id === product.id
@@ -72,18 +74,20 @@ export default function Page({ params }: { params: { category: string } }) {
       setCartItems([...cartItems, product]);
     }
   };
-
+  const currentData:any = categoryData!==null?categoryData:filterByCategory.items;
+  console.log(categoryData);
   return (
     <>
       <div className="py-8 w-full flex items-center justify-center bg-[#f1f3f6] mx-auto">
         <div className="w-[1440px] px-6">
           <section className="flex justify-between gap-8 flex-wrap">
-            {filterByCategory.items.map((product) => {
+            {currentData.map((product:any) => {
               return (
-                <Link href={`${category}/${product.id}`}
+                <div
                   key={product.id}
                   className=" px-4 pt-3 rounded-xl pb-2 cursor-pointer bg-white"
                 >
+                  <Link href={`${category}/${product.id}`}>
                   <div className="w-[210px] h-[180px]">
                     <Image
                       className="object-cover rounded-lg"
@@ -95,6 +99,7 @@ export default function Page({ params }: { params: { category: string } }) {
                       style={{ width: "100%", height: "100%" }}
                     />
                   </div>
+                  </Link>
                   <div className="flex items-center gap-2 mt-2">
                     <div className="w-[18px] h-[18px] bg-gray-200 rounded-full flex items-center justify-center">
                       <Image
@@ -151,7 +156,7 @@ export default function Page({ params }: { params: { category: string } }) {
                       </div>
                     </div>
                   </div>
-                </Link>
+                </div>
               );
             })}
           </section>
