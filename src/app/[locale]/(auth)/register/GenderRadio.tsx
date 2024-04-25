@@ -12,7 +12,7 @@ export function GenderRadio({
   return (
     <div>
       <span>{gender}</span>
-      <RadioGroup className="flex pt-5">
+      <RadioGroup defaultValue="male" className="flex pt-5">
         <div className="flex items-center space-x-2">
           <RadioGroupItem value="male" id="r1" />
           <span>{male}</span>

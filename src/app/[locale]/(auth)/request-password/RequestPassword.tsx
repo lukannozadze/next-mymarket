@@ -6,14 +6,19 @@ import Image from "next/image";
 import { Input } from "@/components/ui/input";
 import Link from "next/link";
 import { RequestPasswordReset } from "../actions";
-
 import LanguageSelect from "../shared/LanguageSelect";
 import { useState } from "react";
 import RequestNotification from "./RequestNotification";
 import Loader from "../shared/Loader";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+} from "@/components/ui/form";
 
 const formSchema = z.object({
-  email: z.string().email({ message: "Enter the Email" }).min(1),
+  email: z.string().email({ message: "ჩაწერე ელფოსტა" }).min(1),
 });
 
 export default function RequestPassword({
@@ -81,17 +86,27 @@ export default function RequestPassword({
           <h2 className="w-full text-[28px] font-bold ">{title}</h2>
         </div>
         <div className="w-full flex flex-col items-center gap-4 pt-5">
+          <Form {...form}>
           <form
             className="flex flex-col w-full  "
             onSubmit={form.handleSubmit(onSubmit)}
           >
             <div className="w-full flex flex-col pb-4 gap-[14px] ">
-              <Input
-                className="w-full p-4 rounded-lg placeholder:text-[16px]"
-                {...form.register("email")}
-                type="text"
-                placeholder={email}
-              />
+            <FormField
+                  control={form.control}
+                  name="email"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormControl>
+                        <Input
+                          className="w-full p-4 rounded-lg placeholder:text-[16px]"
+                          placeholder={email}
+                          {...field}
+                        />
+                      </FormControl>
+                    </FormItem>
+                  )}
+                />
               {form.formState.errors.email && (
                 <div className="flex gap-3 items-center ">
                   <Image
@@ -115,6 +130,7 @@ export default function RequestPassword({
               {done}
             </button>
           </form>
+          </Form>
         </div>
       </div>
     </div>

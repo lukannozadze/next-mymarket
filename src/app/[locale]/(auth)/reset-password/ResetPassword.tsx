@@ -13,15 +13,21 @@ import { useSearchParams } from "next/navigation";
 import { toast } from "@/components/ui/use-toast";
 import Loader from "../shared/Loader";
 import { useLocale } from "next-intl";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+} from "@/components/ui/form";
 const formSchema = z
   .object({
     password: z.string().min(6, {
-      message: " must contain at least 6 character(s).",
+      message: "უნდა შეიცავდეს სულ მცირე 6 სიმბოლოს",
     }),
     confirm: z.string().min(6),
   })
   .refine((data) => data.confirm === data.password, {
-    message: "Passwords did not match",
+    message: "პაროლები არ ემთხვევა",
     path: ["confirm"],
   });
 
@@ -81,7 +87,7 @@ export default function ResetPassword({
     confirmType === "password"
       ? "/icons/show-pass.svg"
       : "/icons/hide-pass.svg";
-  const { register, handleSubmit, formState } = useForm<
+  const form = useForm<
     z.infer<typeof formSchema>
   >({
     resolver: zodResolver(formSchema),
@@ -132,9 +138,10 @@ export default function ResetPassword({
           <Image src={logoPath} alt="logo" width={185} height={33} />
           <LanguageSelect />
         </div>
+        <Form {...form}>
         <form
           className="flex flex-col pt-[58px] items-center"
-          onSubmit={handleSubmit(onSubmit)}
+          onSubmit={form.handleSubmit(onSubmit)}
         >
           <div className="w-full flex flex-col items-center gap-4">
             <div className="flex items-center gap-2 pt-[58px] lg:pt-[92px] self-start">
@@ -154,11 +161,21 @@ export default function ResetPassword({
              "
               >
                 <div className="relative">
-                  <Input
-                    className="w-full p-4 rounded-lg placeholder:text-[16px]"
-                    {...register("password")}
-                    type={passType}
-                    placeholder={password}
+                <FormField
+                    control={form.control}
+                    name="password"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormControl>
+                          <Input
+                            type={passType}
+                            className="w-full p-4 rounded-lg placeholder:text-[16px]"
+                            placeholder={password}
+                            {...field}
+                          />
+                        </FormControl>
+                      </FormItem>
+                    )}
                   />
                   <Image
                     onClick={showPassClickHandler}
@@ -169,7 +186,7 @@ export default function ResetPassword({
                     className="absolute right-4 bottom-[28%] cursor-pointer"
                   />
                 </div>
-                {formState.errors.password && (
+                {form.formState.errors.password && (
                   <div className="flex gap-3 items-center ">
                     <Image
                       src="/icons/error.png"
@@ -178,7 +195,7 @@ export default function ResetPassword({
                       height={25}
                     />
                     <span className=" text-[#FF0000]">
-                      {formState.errors.password.message}
+                      {form.formState.errors.password.message}
                     </span>
                   </div>
                 )}
@@ -186,11 +203,21 @@ export default function ResetPassword({
 
               <div className="relative w-full flex flex-col gap-[14px]  ">
                 <div className="relative">
-                  <Input
-                    className="w-full p-4 rounded-lg placeholder:text-[16px]"
-                    {...register("confirm")}
-                    type={confirmType}
-                    placeholder={repeat}
+                <FormField
+                    control={form.control}
+                    name="confirm"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormControl>
+                          <Input
+                            type={passType}
+                            className="w-full p-4 rounded-lg placeholder:text-[16px]"
+                            placeholder={repeat}
+                            {...field}
+                          />
+                        </FormControl>
+                      </FormItem>
+                    )}
                   />
                   <Image
                     onClick={showConfirmClickHandler}
@@ -201,7 +228,7 @@ export default function ResetPassword({
                     className="absolute right-4 bottom-[28%] cursor-pointer"
                   />
                 </div>
-                {formState.errors.confirm && (
+                {form.formState.errors.confirm && (
                   <div className="flex gap-3 items-center ">
                     <Image
                       src="/icons/error.png"
@@ -210,14 +237,14 @@ export default function ResetPassword({
                       height={25}
                     />
                     <span className=" text-[#FF0000]">
-                      {formState.errors.confirm.message}
+                      {form.formState.errors.confirm.message}
                     </span>
                   </div>
                 )}
               </div>
             </div>
             <button
-              onClick={() => console.log(formState.errors)}
+              onClick={() => console.log(form.formState.errors)}
               className="mt-4 w-full text-white bg-[#3C74FF] rounded-full py-3"
               type="submit"
             >
@@ -225,6 +252,7 @@ export default function ResetPassword({
             </button>
           </div>
         </form>
+        </Form>
       </div>
     </div>
   );
